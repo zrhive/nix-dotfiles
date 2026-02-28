@@ -1,39 +1,21 @@
-
 # More informations and options in
-# https://nix-community.github.io/home-manager/
+# https://nix-community.github.io/home-manager
 
-{ config, pkgs, username, stateVersion, ... }:
+# { user, stateVersion, ... }:
+{ user, ... }:
 
 {
-  # The package are declared in separate nix file in home directory of this dotfiles
-  # Import to install packages to include in home.
-  import = [
-
-    /* Examples:
-
-    ./home/programs/kitty
-    ./home/services/picom
-    and so on ...
-          
-    */
-
-  ];
-
   # Information for the Home Manager
   home = {
-
-    # User of this Home Manager.
-    username = "${username}";
+    # User(s) for Home Manager
+    username = "${user}";
 
     # The path Home Manager should manage.
     # Usually the $HOME path.
-    homeDirectory = "/home/${username}";
-    
-    # The Home Manager release that the configuration is compatible with.
-    # `stateVersion` defined in `../flake.nix`.
-    stateVersion = "${stateVersion}";
-    
-    # inherit username stateVersion;
+    homeDirectory = "/home/${user}";
+
+    # Home Manager release that the configuration is compatible with.
+    stateVersion = "25.11";
   };
 
   # Let Home Manager install and manage itself.

@@ -10,17 +10,17 @@
       accent = "pink";
     };
 
-    # GTK
-    gtk = {
-      enable = true;
-      flavor = "macchiato";
-      accent = "lavender";
-    };
+    # # GTK
+    # gtk = {
+    #   enable = true;
+    #   flavor = "macchiato";
+    #   accent = "lavender";
+    # };
 
-    tty = {
-      enable = true;
-      flavor = "mocha";
-    };
+    # tty = {
+    #   enable = true;
+    #   flavor = "mocha";
+    # };
 
   };
 }

@@ -5,28 +5,28 @@ end
 
 return {
     -- Rose Pine Theme
+    -- {
+    --     "rose-pine/neovim",
+    --     name = "rose-pine",
+    --     lazy = false,
+    --     priority = 1000,
+    --
+    --     config = function()
+    --         vim.cmd("colorscheme rose-pine-moon")
+    --         background_transparency()
+    --     end
+    -- },
+
+    -- Catppuccin Theme
     {
-        "rose-pine/neovim",
-        name = "rose-pine",
+       "catppuccin/nvim",
+        name = "catppuccin",
         lazy = false,
         priority = 1000,
 
         config = function()
-            vim.cmd("colorscheme rose-pine-moon")
+            vim.cmd("colorscheme catppuccin")
             background_transparency()
-        end
+        end,
     },
-
-    -- Catppuccin Theme
-    -- {
-    --    "catppuccin/nvim",
-    --     name = "catppuccin",
-    --     lazy = false,
-    --     priority = 1000,
-
-    --     config = function()
-    --         vim.cmd("colorscheme catppuccin")
-    --         background_transparancy()
-    --     end,
-    -- },
 }

@@ -6,10 +6,9 @@
   # Enable autolock
   services.xserver.xautolock = {
     enable = true;
-    time = 20;
     enableNotifier = true;
     notifier = "${pkgs.libnotify}/bin/notify-send 'Locking in 10 seconds'";
-    extraOptions = [];
+    extraOptions = [ "-detectsleep" ];
   };
 
   # Laptop power key and lid handler

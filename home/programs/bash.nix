@@ -9,18 +9,18 @@
       "..." = "cd ../../";
       "...." = "cd ../../../";
       "....." = "cd ../../../../";
-      "cp" = "-irv --debug";
-      "mv" = "-iv --debug";
-      "rm" = "-Irv";
+      "cp" = "cp -irv --debug";
+      "mv" = "mv -iv --debug";
+      "rm" = "rm -Irv";
       "cat" = "cat -n";
       "fcheck" = "nix flake check";
       "fshow" = "nix flake show";
-      "frebuild" = "sudo nixos-rebuild switch --flake";
+      "nrsf" = "sudo nixos-rebuild switch --flake";
       "gs" = "git status";
-      "gadd" = "git add";
-      "gcommit" = "git commit";
-      "gpush" = "git push github";
-      "dotfiles" = "cd ~/.dotfiles";
+      "ga" = "git add";
+      "gc" = "git commit";
+      "gp" = "git push github";
+      "dots" = "cd ~/.dotfiles";
     };
 
     # Customize bash prompt easily with the link below
@@ -47,6 +47,7 @@
           fi
           git=" \[''${color}\] $branch\[''${R}\]"
         fi
+
         PS1="''${default}''${git}''${sign}"
       }
       export PROMPT_COMMAND="__prompt_bash"

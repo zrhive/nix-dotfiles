@@ -14,7 +14,7 @@ function M.setup()
         float = {
             style = "minimal",
             border = "rounded",
-            source = "if_many"
+            source = "if_many",
             header = "",
             prefix = "",
         },

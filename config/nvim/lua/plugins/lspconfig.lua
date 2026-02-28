@@ -5,7 +5,7 @@
 
 return {
     -- install lspconfig and use the config for LSPs
-    { "neovim/nvim-lspconfig" 
+    { "neovim/nvim-lspconfig",
         dependencies = { "mason-org/mason.nvim", opts = {} },
     },
 

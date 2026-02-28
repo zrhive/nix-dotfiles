@@ -1,40 +1,29 @@
-{ inputs, outputs, ... }:
+{
+  # HOME ENTRY
+  default = import ./home.nix;
 
-{ username, stateVersion }:
+  # PROGRAMS
+  programs = {
+    default = import ./programs;
+    bash    = import ./programs/bash.nix;
+    direnv  = import ./programs/direnv.nix;
+    feh     = import ./programs/feh.nix;
+    git     = import ./programs/git.nix;
+    kitty   = import ./programs/kitty.nix;
+    neovim  = import ./programs/neovim.nix;
+    qimgv   = import ./programs/qimgv.nix;
+    rofi    = import ./programs/rofi.nix;
+    yazi    = import ./programs/yazi.nix;
+  };
 
-let
+  # SERVICES
+  services = {
+    default = import ./services;
+    dunst   = import ./services/dunst.nix;
+  };
 
-  pkgs = outputs.pkgs;
-  home-manager = inputs.home-manager.lib.homeManagerConfiguration;
-
-  home = import ../${username}/home.nix { inherit username stateVersion };
-
-in home-manager {
-
-  inherit pkgs;
-  
-  modules = [ home ];
-
+  # THEMES
+  themes = {
+    default = import ./themes;
+  };
 }
-
-/*
-
-let 
-
-  # assume pkgs and stateVersion are defined
-
-  mkHome = import ./home { inherit inputs outputs }
-
-  users = { "alice", "emma" }
-
-in {
-
-  homeConfigurations = {
-
-    "username@hostname" = mkHome { "username", stateVersion };
-
-  }
-
-}
-
-*/

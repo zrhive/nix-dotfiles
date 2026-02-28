@@ -1,9 +1,8 @@
 { pkgs ? import <nixpkgs> {} }:
 
 pkgs.mkShell {
-  packages = [  ];
-  inputsFrom = [  ];
-  shellHook = ''
-    echo "Entered nix shell!"
-  '';
+  packages = with pkgs; [
+    sops age
+    cargo nodejs
+  ];
 }

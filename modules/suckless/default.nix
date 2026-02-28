@@ -10,27 +10,23 @@
 # st: https://st.suckless.org/
 # ############################################
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
-
-  dwm = pkgs.dwm.overrideAttrs { src = ./dwm; };
-  slstatus = pkgs.slstatus.overrideAttrs { src = ./slstatus; };
-  dmenu = pkgs.dmenu.overrideAttrs { src = ./dmenu; };
-  st = pkgs.st.overrideAttrs { src = ./st; };
-
-  status = config.services.slstatus;
-
+  packdwm      = pkgs.dwm.overrideAttrs { src = ./dwm; };
+  packslstatus = pkgs.slstatus.overrideAttrs { src = ./slstatus; };
+  packdmenu    = pkgs.dmenu.overrideAttrs { src = ./dmenu; };
+  packst       = pkgs.st.overrideAttrs { src = ./st; };
 in {
   services.xserver.windowManager.dwm = {
     enable = true;
-    package = dwm;
+    package = packdwm;
   };
 
   environment.systemPackages = [
-    slstatus
-    dmenu
-    st
+    packslstatus
+    packdmenu
+    packst
   ];
 
   systemd.user.services.slstatus = {
@@ -39,7 +35,7 @@ in {
     wantedBy = [ "graphical-session.target" ];
     partOf = [ "graphical-session.target" ];
     serviceConfig = {
-      ExecStart = "${status.slstatus}/bin/slstatus &";
+      ExecStart = "${pkgs.packslstatus}/bin/slstatus &";
     };
   };
 }

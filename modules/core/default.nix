@@ -4,7 +4,6 @@
     ./boot.nix
     ./xserver.nix
     ./networking.nix
-    # ./locale.nix
-    # ./user.nix
+    ./user.nix
   ];
 }
