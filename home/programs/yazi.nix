@@ -1,15 +1,19 @@
-{ config, dots, pkgs, ... }:
-
+{ pkgs, ... }:
 {
-  # # xdg.configFile = dots.configFile { name = "yazi"; };
-  # xdg.configFile."yazi" = {
-  #   source = config.lib.file.mkOutOfStoreSymlink dots.yazi;
-  #   recursive = true;
-  # };
+  # home.packages = [ pkgs.yazi ];
+  programs.yazi = {
+    enable = true;
+    package = pkgs.unstable.yazi;
+    shellWrapperName = "y";
 
-  home.packages = [ pkgs.yazi ];
-  # programs.yazi = {
-  #   enable = true;
-  #   package = pkgs.yazi;
-  # };
+    plugins = {
+      inherit (pkgs.yaziPlugins)
+        sudo mount
+        full-border toggle-pane
+        mediainfo ouch
+        recycle-bin restore
+        smart-enter smart-filter
+      ;
+    };
+  };
 }

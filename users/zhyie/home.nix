@@ -6,23 +6,23 @@ let
 
   outLink = config.lib.file.mkOutOfStoreSymlink;
 in
-
 {
-  home.packages = attrValues {
-    inherit (pkgs) qutebrowser;
-    inherit (sc) hello;
-  };
-
   home.file = {
-    ".gitconfig" = { source = outLink ./.gitconfig; };
+    ".gitconfig" = { source = outLink "${config.home.homeDirectory}/.gitconfig"; };
   };
 
-  dotfiles.configFiles = [ "picom" "kitty" "rofi" "yazi" ];
+  dotfiles.configFiles = [
+    "picom" "kitty" "rofi" "yazi"
+    # "dunst"
+  ];
 
   imports = [
     home.programs.default
     home.services.default
     home.themes.default
-    dots.configFile
+    dots.dotfiles
   ];
+  home.packages = attrValues {
+    inherit (sc) hello;
+  };
 }

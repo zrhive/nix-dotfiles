@@ -1,10 +1,13 @@
 let
-  pkgs = import <nixpkgs> {};
+  pkgs = (import ./.).pkgs;
 in
 
 pkgs.mkShell {
-  packages = with pkgs; [
-    nixfmt-tree git sops age cargo nodejs
-    lua-language-server
-  ];
+  packages = builtins.attrValues {
+    inherit (pkgs)
+      tree
+      nixfmt-tree git
+      lua-language-server
+    ;
+  };
 }

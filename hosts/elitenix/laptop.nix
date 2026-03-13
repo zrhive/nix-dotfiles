@@ -1,5 +1,4 @@
 { config, lib, pkgs, ... }:
-
 {
   # Enable screensaver
   services.xscreensaver.enable = true;
@@ -8,7 +7,16 @@
     enable = true;
     enableNotifier = true;
     notifier = "${pkgs.libnotify}/bin/notify-send 'Locking in 10 seconds'";
-    extraOptions = [ "-detectsleep" ];
+    extraOptions = [ "-detectsleep" "-lockaftersleep" "-resetsaver" ];
+  };
+
+  services.xserver = {
+    serverFlagsSection = ''
+      Option "BlankTime" "0"
+      Option "StandbyTime" "10"
+      Option "SuspendTime" "20"
+      Option "OffTime" "30"
+    '';
   };
 
   # Laptop power key and lid handler
@@ -44,6 +52,8 @@
     percentageLow = 20;
     percentageCritical = 10;
     percentageAction = 5;
+    allowRiskyCriticalPowerAction = true;
+    criticalPowerAction = "Hibernate";
   };
 
   # Prevents overheating on Intel CPUs
@@ -68,10 +78,10 @@
       START_CHARGE_THRESH_BAT0 = 40; # 40 and below it starts to charge
       STOP_CHARGE_THRESH_BAT0 = 80;  # 80 and above it stops charging
 
-      # # Laptop runs hot when on power but not on battery
-      # # This tells tlp to always run in battery mode
-      # TLP_DEFAULT_MODE = "BAT";
-      # TLP_PERSISTENT_DEFAULT = 1;
+      # Laptop runs hot when on power but not on battery
+      # This tells tlp to always run in battery mode
+      TLP_DEFAULT_MODE = "BAT";
+      TLP_PERSISTENT_DEFAULT = 1;
     };
   };
 }

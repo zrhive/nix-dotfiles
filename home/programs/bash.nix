@@ -2,10 +2,14 @@
 {
   programs.bash = {
     enable = true;
+    historyFileSize = 10000;
+    historySize = 1000;
+    historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
+    historyIgnore = [ "ls" "cd" ];
 
     shellAliases = {
-      "cp" = "cp -irv --debug";
-      "mv" = "mv -iv --debug";
+      "cp" = "cp -irv";
+      "mv" = "mv -iv";
       "rm" = "rm -Irv";
       "cat" = "cat -n";
       "la" = "ls --group-directories-first -la";
@@ -19,6 +23,52 @@
       "gc" = "git commit";
       "gp" = "git push github";
     };
+
+    bashrcExtra = ''
+      mvg() {
+        if [ -d "$2" ]; then
+          mv "$1" "$2" && cd "$2"
+        else
+          mv "$1" "$2"
+        fi
+      }
+      cpg() {
+        if [ -d "$2" ]; then
+          cp "$1" "$2" && cd "$2"
+        else
+          cp "$1" "$2"
+        fi
+      }
+      cpp() {
+        set -e
+        strace -q -ewrite cp -- "$1" "$2" 2>&1 |
+        awk '{
+            count += $NF
+            if (count % 10 == 0) {
+                percent = count / total_size * 100
+                printf "%3d%% [", percent
+                for (i=0;i<=percent;i++)
+                    printf "="
+                printf ">"
+                for (i=percent;i<100;i++)
+                    printf " "
+                printf "]\r"
+            }
+        }
+        END { print "" }' total_size="$(stat -c '%s' "$1")" count=0
+      }
+      mkdirg() {
+        mkdir -p "$1"
+        cd "$1"
+      }
+      cd () {
+        if [ -n "$1" ]; then
+          builtin cd "$@" && ls
+        else
+          builtin cd ~ && ls
+        fi
+      }
+    '';
 
     # Customize bash prompt easily with the link below
     # https://bash-prompt-generator.org/

@@ -70,7 +70,7 @@
 
     ### Icons ###
     enable_recursive_icon_lookup = true
-    icon_theme = Papirus
+    # icon_theme = Papirus
     # icon_theme = "Adwaita, breeze"
     icon_position = left
     min_icon_size = 32
@@ -90,10 +90,6 @@
     corner_radius = 0
     corners = all
     ignore_dbusclose = false
-
-    ### Wayland ###
-    # layer = top
-    force_xwayland = false
 
     ### Legacy
     force_xinerama = false

@@ -1,5 +1,6 @@
 {
   configFile = import ./configFile.nix;
+  dotfiles = import ./dotfiles.nix;
 
   dunst   = ./dunst;
   feh     = ./feh;

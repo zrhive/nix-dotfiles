@@ -1,8 +1,4 @@
-{ config, pkgs, dots, ... }:
-
-let
-  cwd = "${config.home.homeDirectory}/.dotfiles";
-in
+{ pkgs, ... }:
 {
   services.dunst = {
     enable = true;
@@ -11,8 +7,10 @@ in
       name = "Papirus-Light";
       size = "32x32";
     };
-    configFile = "${cwd}/${dots.dunst}/dunstrc";
+  };
+
+  xdg.configFile.dunst = {
+    source = ${config.home.homeDirectory}/.os/dotfiles/dunst;
+    recursive = true;
   };
 }
-
-

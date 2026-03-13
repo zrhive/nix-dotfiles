@@ -1,13 +1,11 @@
 { config, lib, pkgs, ... }:
-
 {
   # Enable firefox.
   programs.firefox.enable = true;
   # Enable backlight.
   programs.light.enable = true;
-
+  # Enable gtk settings
   programs.dconf.enable = true;
-
   # Enable upower.
   services.upower.enable = true;
 
@@ -16,5 +14,6 @@
     wget
     unzip
     libnotify
+    xclip
   ];
 }

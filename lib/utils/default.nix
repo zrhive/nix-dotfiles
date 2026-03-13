@@ -1,4 +1,7 @@
+{ lib, ... }:
+let
+  utils = builtins
+in
 {
-  configFile = import ./configFile;
-  homeFile = import ./homeFile;
+  imports = [];
 }

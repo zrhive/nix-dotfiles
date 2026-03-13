@@ -9,5 +9,5 @@
     };
   };
 
-  additions = final: _prev: import ../packages final.pkgs;
+  # additions = final: _prev: import ../packages final.pkgs;
 }

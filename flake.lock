@@ -112,7 +112,8 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "sops-nix": "sops-nix",
-        "suckless": "suckless"
+        "suckless": "suckless",
+        "zecrets": "zecrets"
       }
     },
     "sops-nix": {
@@ -136,19 +137,29 @@
       }
     },
     "suckless": {
+      "flake": false,
       "locked": {
-        "lastModified": 1773058148,
-        "narHash": "sha256-Iu2qaprOp82E2yHbIRSUZyNHCFuZteQPySFhEkBM05Y=",
-        "owner": "zrhive",
-        "repo": "suckless",
-        "rev": "1f71af23de9aadc86aed1d29866f19f536c83c66",
-        "type": "github"
+        "lastModified": 1773380719,
+        "narHash": "sha256-m2FU7QzGCoqv1lV21sQY+va/Yv/3+ndO4j2GyI30nEA=",
+        "path": "/home/zhyie/.suckless",
+        "type": "path"
       },
       "original": {
-        "owner": "zrhive",
-        "repo": "suckless",
-        "type": "github"
+        "path": "/home/zhyie/.suckless",
+        "type": "path"
       }
+    },
+    "zecrets": {
+      "flake": false,
+      "locked": {
+        "path": "git@github.com:zhyie/nix-secrets.git",
+        "type": "path"
+      },
+      "original": {
+        "path": "git@github.com:zhyie/nix-secrets.git",
+        "type": "path"
+      },
+      "parent": []
     }
   },
   "root": "root",
