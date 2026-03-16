@@ -1,5 +1,6 @@
 let
-  pkgs = (import ./.).pkgs;
+  default = import ./.;
+  pkgs = default.pkgs;
 in
 
 pkgs.mkShell {

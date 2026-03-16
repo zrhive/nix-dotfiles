@@ -1,8 +1,9 @@
 let
   path = builtins.path {
     path = ./.;
-    name = "nixflake";
+    name = "zhynix";
   };
+
   lock = builtins.fromJSON (builtins.readFile ./flake.lock);
 
   n = lock.nodes.nixpkgs.locked;
@@ -12,20 +13,8 @@ let
   };
 
   system = builtins.currentSystem;
-  overlays = [];
-
-  flake = import ./flake.nix;
 in
 {
-  pkgs = import nixpkgs { inherit system overlays; };
-
-  nixos = import ./nixos;
-  home = import ./home;
-  lib = import ./lib;
-
-  # host = ./hosts { inherit (flake) inputs; };
-  hosts = builtins.attrNames (builtins.readDir ./hosts);
-  users = builtins.attrNames (builtins.readDir ./users);
-
+  pkgs = import nixpkgs { inherit system; };
   inherit path;
 }

@@ -1,9 +1,8 @@
-{ pkgs, nixos, ... }:
+{ nixos, ... }:
 
 {
   imports = [
-    nixos.core
-    nixos.hardware
+    nixos.common
     nixos.services
   ];
 

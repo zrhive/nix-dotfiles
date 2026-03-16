@@ -4,7 +4,6 @@ let
   inherit (inputs) nixos-hardware sops-nix;
   hardware = nixos-hardware.nixosModules;
 in
-
 {
   elitenix = {
     system = "x86_64-linux";
@@ -19,17 +18,4 @@ in
     ];
     stateVersion = "25.11";
   };
-
-  # asunix = {
-  #   system = "xi686-linux";
-  #   userList = [ "absky" ];
-  #   moduleList = [];
-  #   stateVersion = "";
-  # };
-  #
-  # samnix = {
-  #   system = "x86_64-linux";
-  #   userList = [ "absky" ];
-  #   moduleList = [];
-  # };
 }

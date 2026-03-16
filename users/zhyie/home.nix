@@ -1,4 +1,4 @@
-{ lib, pkgs, home, dots, scripts, ... }:
+{ lib, pkgs, home, scripts, ... }:
 
 let
   inherit (lib) attrValues;
@@ -16,11 +16,19 @@ in
     # "dunst"
   ];
 
+  vars = {
+    flake = ".os";
+    user = {
+      name = "zhyie";
+      email = "zhyie";
+    };
+  };
+
   imports = [
     home.programs.default
     home.services.default
     home.themes.default
-    dots.dotfiles
+    home.utils
   ];
   home.packages = attrValues {
     inherit (sc) hello;

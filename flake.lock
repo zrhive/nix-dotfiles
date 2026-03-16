@@ -19,6 +19,18 @@
         "type": "github"
       }
     },
+    "dotfiles": {
+      "flake": false,
+      "locked": {
+        "path": "./dotfiles",
+        "type": "path"
+      },
+      "original": {
+        "path": "./dotfiles",
+        "type": "path"
+      },
+      "parent": []
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -107,15 +119,27 @@
     "root": {
       "inputs": {
         "catppuccin": "catppuccin",
+        "dotfiles": "dotfiles",
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "secrets": "secrets",
         "sops-nix": "sops-nix",
-        "suckless": "suckless",
-        "zecrets": "zecrets",
-        "zotfiles": "zotfiles"
+        "suckless": "suckless"
       }
+    },
+    "secrets": {
+      "flake": false,
+      "locked": {
+        "path": "./.secrets",
+        "type": "path"
+      },
+      "original": {
+        "path": "./.secrets",
+        "type": "path"
+      },
+      "parent": []
     },
     "sops-nix": {
       "inputs": {
@@ -147,31 +171,6 @@
       },
       "original": {
         "path": "/home/zhyie/.suckless",
-        "type": "path"
-      }
-    },
-    "zecrets": {
-      "flake": false,
-      "locked": {
-        "path": "git@github.com:zhyie/nix-secrets.git",
-        "type": "path"
-      },
-      "original": {
-        "path": "git@github.com:zhyie/nix-secrets.git",
-        "type": "path"
-      },
-      "parent": []
-    },
-    "zotfiles": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1773494311,
-        "narHash": "sha256-rdtzorpHlvqxNstsPTWQXqVIvZeZuUoBnB26eQ/GNn8=",
-        "path": "/home/zhyie/.dotfiles",
-        "type": "path"
-      },
-      "original": {
-        "path": "/home/zhyie/.dotfiles",
         "type": "path"
       }
     }

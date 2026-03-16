@@ -13,7 +13,7 @@ trim_trailing_whitespace = true
 charset = utf-8
 
 # Match file types, 2 space identation
-[*.{nix,c,h,yaml,conf}]
+[*.{nix,yaml,conf}]
 indent_style = space
 indent_size = 2
 
@@ -25,7 +25,3 @@ indent_size = 4
 [Makefile]
 indent_style = tab
 indent_size = 4
-
-# Match diffs, avoid to trim trailing whitespace
-[*.{diff,patch}]
-trim_trailing_whitespace = false

@@ -1,31 +1,16 @@
 { inputs, ... }:
 
 let
-  inherit (inputs) catppuccin;
-
-  catp = catppuccin.homeModules.catppuccin;
+  inherit (inputs) catppuccin sops-nix;
 in
-
 {
   zhyie = {
     default = import ./zhyie;
     home    = import ./zhyie/home.nix;
-    hostList = [ "zhyie" "zhyie@elitenix" ];
+    hostList = [ "zhyie@elitenix" ];
     moduleList = [
-      catp
+      catppuccin.homeModules.catppuccin
+      sops-nix.homeModules.sops
     ];
   };
-
-  # riri = {
-  #   home = import ./riri/home.nix;
-  #   hostList = [ "riri" ];
-  #   moduleList = [];
-  # };
-  #
-  # absky = {
-  #   default = import ./absky;
-  #   home    = import ./absky/home.nix;
-  #   hostList = [ "absky" "absky@asunix" ];
-  #   moduleList = [];
-  # };
 }
