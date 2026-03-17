@@ -1,14 +1,15 @@
-let
-  default = import ./.;
-  pkgs = default.pkgs;
-in
+{
+  system ? builtins.currentSystem,
+  pkgs ? (import ./.).pkgs,
+}:
 
 pkgs.mkShell {
   packages = builtins.attrValues {
     inherit (pkgs)
       tree
-      nixfmt-tree git
-      lua-language-server
-    ;
+      nixfmt
+      nixfmt-tree
+      nixpkgs-fmt
+      ;
   };
 }

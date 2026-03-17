@@ -16,7 +16,7 @@
       middleEmulation = true;
       scrollMethod = "twofinger";
       horizontalScrolling = true;
-      naturalScrolling = true;
+      naturalScrolling = false;
     };
 
     # Mouse Settings

@@ -13,17 +13,26 @@ in
 
   programs.neovim = {
     enable = true;
+    package = pkgs.unstable.neovim-unwrapped;
     defaultEditor = true;
     viAlias = true;
     withNodeJs = true;
 
     extraPackages = builtins.attrValues {
       inherit (pkgs)
-        cargo clang
-        ripgrep fzf xclip
-        lua-language-server stylua
-        nixd nixfmt-tree deadnix
-      ;
+        ripgrep
+        fzf
+        xclip
+        lua-language-server
+        luacheck
+        stylua
+        nixd
+        nixfmt-tree
+        deadnix
+        clang
+        clang-tools
+        cargo
+        ;
     };
 
     # plugins = builtins.attrValues {

@@ -1,4 +1,4 @@
-{ ... } @ args:
+{ ... }@args:
 
 let
   inherit (args) lib;
@@ -11,14 +11,24 @@ in
   #   inherit (cfg) system userList moduleList stateVersion;
   # });
 
-  mkHost = host: cfg: if lib.hasSuffix "linux" cfg.system
-    then import ./mkNixos.nix (args // {
-      # inherit host; inherit (cfg) system userList moduleList;
-      inherit host cfg;
-    })
-    else import ./mkDarwin.nix (args // {
-      inherit host; inherit (cfg) system userList moduleList;
-    });
+  mkHost =
+    host: cfg:
+    if lib.hasSuffix "linux" cfg.system then
+      import ./mkNixos.nix (
+        args
+        // {
+          # inherit host; inherit (cfg) system userList moduleList;
+          inherit host cfg;
+        }
+      )
+    else
+      import ./mkDarwin.nix (
+        args
+        // {
+          inherit host;
+          inherit (cfg) system userList moduleList;
+        }
+      );
 
   # mkHome = host: cfg: let user = lib.attrsName (
   #   lib.genAttrs cfg.userList (user: {}));

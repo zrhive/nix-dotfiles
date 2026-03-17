@@ -1,12 +1,12 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   services.dunst = {
     enable = true;
     iconTheme = {
       package = pkgs.papirus-icon-theme;
-      name = "Papirus-Light";
+      name = "Papirus";
       size = "32x32";
     };
-    configFile = builtins.toString ../../../dotfiles/dunst/dunstrc;
+    configFile = inputs.dotfiles + "/dunst/dunstrc";
   };
 }

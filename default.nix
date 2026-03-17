@@ -12,9 +12,10 @@ let
     sha256 = n.narHash;
   };
 
-  system = builtins.currentSystem;
+  # system = builtins.currentSystem;
 in
 {
-  pkgs = import nixpkgs { inherit system; };
+  pkgs = import nixpkgs { };
+
   inherit path;
 }

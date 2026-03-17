@@ -1,4 +1,9 @@
-{ inputs, lib, home, system, ... };
+{
+  inputs,
+  home,
+  system,
+  ...
+}:
 
 let
   inherit (inputs) nixpkgs home-manager;

@@ -7,7 +7,7 @@
 
     input = {
       General = {
-        IdleTimeout = 120;        # Set idle timeout (in seconds) before disconnecting input device.
+        IdleTimeout = 120; # Set idle timeout (in seconds) before disconnecting input device.
         # UserspaceHID = true;      # Enable HID protocol handling in userspace input profile.
         # ClassicBondedOnly = true; # Limit HID connections to bonded devices.
         # LEAutoSecurity = true;    # Enables upgrades of security automatically if required.

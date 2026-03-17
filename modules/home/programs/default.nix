@@ -1,7 +1,6 @@
 {
   imports = [
     ./bash.nix
-    ./direnv.nix
     ./feh.nix
     ./git.nix
     ./kitty.nix

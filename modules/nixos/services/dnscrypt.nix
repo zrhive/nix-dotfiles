@@ -4,7 +4,8 @@ let
   hasIPv6Internet = true;
   StateDirectory = "dnscrypt-proxy";
 
-in {
+in
+{
   services.dnscrypt-proxy = {
     enable = true;
 
@@ -21,7 +22,7 @@ in {
 
       # Use servers reachable over IPv6 -- Do not enable if you don't have IPv6 connectivity
       ipv6_servers = hasIPv6Internet;
-      block_ipv6 = ! (hasIPv6Internet);
+      block_ipv6 = !(hasIPv6Internet);
 
       require_dnssec = true;
       require_nolog = false;

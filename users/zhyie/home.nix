@@ -1,4 +1,10 @@
-{ lib, pkgs, home, scripts, ... }:
+{
+  lib,
+  pkgs,
+  home,
+  scripts,
+  ...
+}:
 
 let
   inherit (lib) attrValues;
@@ -8,11 +14,16 @@ let
 in
 {
   home.file = {
-    ".gitconfig" = { source = builtins.toString ./.gitconfig; };
+    ".gitconfig" = {
+      source = builtins.toString ./.gitconfig;
+    };
   };
 
   dotfiles.configFiles = [
-    "picom" "kitty" "rofi" "yazi"
+    "picom"
+    "kitty"
+    "rofi"
+    "yazi"
     # "dunst"
   ];
 
@@ -34,10 +45,10 @@ in
     inherit (sc) hello;
 
     inherit (pkgs)
-    mediainfo
-    imagemagick
-    trash-cli
-    nushell
-    ;
+      mediainfo
+      imagemagick
+      trash-cli
+      nushell
+      ;
   };
 }

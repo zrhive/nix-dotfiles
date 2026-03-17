@@ -2,7 +2,12 @@
 
 let
   inherit (lib) mkOption types;
-  inherit (types) nullOr either str path;
+  inherit (types)
+    nullOr
+    either
+    str
+    path
+    ;
 
   # homeDir = config.home.homeDirectory;
   # vars = config.vars;

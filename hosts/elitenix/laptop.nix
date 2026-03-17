@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   # Enable screensaver
   services.xscreensaver.enable = true;
@@ -7,7 +12,11 @@
     enable = true;
     enableNotifier = true;
     notifier = "${pkgs.libnotify}/bin/notify-send 'Locking in 10 seconds'";
-    extraOptions = [ "-detectsleep" "-lockaftersleep" "-resetsaver" ];
+    extraOptions = [
+      "-detectsleep"
+      "-lockaftersleep"
+      "-resetsaver"
+    ];
   };
 
   services.xserver = {
@@ -76,7 +85,7 @@
 
       # Optional helps save long term battery health
       START_CHARGE_THRESH_BAT0 = 40; # 40 and below it starts to charge
-      STOP_CHARGE_THRESH_BAT0 = 80;  # 80 and above it stops charging
+      STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
 
       # Laptop runs hot when on power but not on battery
       # This tells tlp to always run in battery mode

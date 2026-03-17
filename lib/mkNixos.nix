@@ -2,10 +2,17 @@
 #   host, system, userList, moduleList, stateVersion, ... } @ args:
 
 # { host, system, userList, moduleList, ... } @ args:
-{ host, cfg, ... } @ args:
+{ host, cfg, ... }@args:
 
 let
-  inherit (args) self inputs lib nixos home users;
+  inherit (args)
+    self
+    inputs
+    lib
+    nixos
+    home
+    users
+    ;
   inherit (cfg) system userList moduleList;
   inherit (lib) genAttrs attrValues flatten;
 
@@ -17,13 +24,21 @@ let
     ];
   };
 
-  specialArgs = { inherit inputs nixos host userList; };
+  specialArgs = {
+    inherit
+      inputs
+      nixos
+      host
+      userList
+      ;
+  };
   # extraSpecialArgs = { inherit self inputs home dots scripts; };
 
   userDefault = genAttrs userList (user: [ users.${user}.default ]);
   extraModules = flatten (moduleList ++ (attrValues userDefault));
 
-in lib.nixosSystem {
+in
+lib.nixosSystem {
   inherit system;
   inherit specialArgs;
 

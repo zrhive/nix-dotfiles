@@ -2,7 +2,7 @@
 {
   programs.git = {
     enable = true;
-    settings= {
+    settings = {
       init.defaultBranch = "main";
     };
   };

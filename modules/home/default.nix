@@ -6,24 +6,26 @@
   # utils
   utils = import ./utils;
 
+  dev = import ./dev;
+
   # PROGRAMS
   programs = {
     default = import ./programs;
-    bash    = import ./programs/bash.nix;
-    direnv  = import ./programs/direnv.nix;
-    feh     = import ./programs/feh.nix;
-    git     = import ./programs/git.nix;
-    kitty   = import ./programs/kitty.nix;
-    neovim  = import ./programs/neovim.nix;
-    qimgv   = import ./programs/qimgv.nix;
-    rofi    = import ./programs/rofi.nix;
-    yazi    = import ./programs/yazi.nix;
+    bash = import ./programs/bash.nix;
+    direnv = import ./programs/direnv.nix;
+    feh = import ./programs/feh.nix;
+    git = import ./programs/git.nix;
+    kitty = import ./programs/kitty.nix;
+    neovim = import ./programs/neovim.nix;
+    qimgv = import ./programs/qimgv.nix;
+    rofi = import ./programs/rofi.nix;
+    yazi = import ./programs/yazi.nix;
   };
 
   # SERVICES
   services = {
     default = import ./services;
-    dunst   = import ./services/dunst.nix;
+    dunst = import ./services/dunst.nix;
   };
 
   # THEMES

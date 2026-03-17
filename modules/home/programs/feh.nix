@@ -5,19 +5,37 @@
     # Mouse buttons
     buttons = {
       rotate = "C-1";
-      blur   = "C-3";
+      blur = "C-3";
       reload = "C-2";
-      zoom_in  = "C-4";
+      zoom_in = "C-4";
       zoom_out = "C-5";
     };
     # Key binds
     keybindings = {
-      next_img = [ "l" "Right" ];
-      prev_img = [ "h" "Left" ];
-      scroll_left   = [ "H" "S-Left" ];
-      scroll_right  = [ "L" "S-Right" ];
-      scroll_up     = [ "K" "S-Up" ];
-      scroll_down   = [ "J" "S-Down" ];
+      next_img = [
+        "l"
+        "Right"
+      ];
+      prev_img = [
+        "h"
+        "Left"
+      ];
+      scroll_left = [
+        "H"
+        "S-Left"
+      ];
+      scroll_right = [
+        "L"
+        "S-Right"
+      ];
+      scroll_up = [
+        "K"
+        "S-Up"
+      ];
+      scroll_down = [
+        "J"
+        "S-Down"
+      ];
       toggle_pause = "p";
       save_filelist = "S";
       # menu keys

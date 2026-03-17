@@ -1,7 +1,13 @@
-{ userList, ... } @ args:
+{ userList, ... }@args:
 
 let
-  inherit (args) inputs lib users home scripts;
+  inherit (args)
+    inputs
+    lib
+    users
+    home
+    scripts
+    ;
   inherit (lib) genAttrs;
   # inherit (cfg) userList stateVersion;
 
@@ -19,7 +25,8 @@ in
       imports = [
         (home.default { inherit user; })
         users.${user}.home
-      ] ++ users.${user}.moduleList;
+      ]
+      ++ users.${user}.moduleList;
     });
   };
 }

@@ -1,4 +1,9 @@
-{ stdenv, lib, pkgs, ... }:
+{
+  stdenv,
+  lib,
+  pkgs,
+  ...
+}:
 
 stdenv.mkDerivation {
   name = "scripts";

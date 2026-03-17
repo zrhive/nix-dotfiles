@@ -4,8 +4,15 @@
     enable = true;
     historyFileSize = 10000;
     historySize = 1000;
-    historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
-    historyIgnore = [ "ls" "cd" ];
+    historyControl = [
+      "erasedups"
+      "ignoredups"
+      "ignorespace"
+    ];
+    historyIgnore = [
+      "ls"
+      "cd"
+    ];
 
     shellAliases = {
       "cp" = "cp -irv";

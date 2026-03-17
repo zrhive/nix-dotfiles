@@ -10,9 +10,13 @@
         enable = true;
         # little widget in login
         indicators = [
-          "~host" "~spacer"
-          "~clock" "~spacer"
-          "~a11y" "~session" "~power"
+          "~host"
+          "~spacer"
+          "~clock"
+          "~spacer"
+          "~a11y"
+          "~session"
+          "~power"
         ];
         # output: Sun Jan 01 23:59
         clock-format = "%a %b %d %H:%M";
