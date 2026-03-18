@@ -39,6 +39,7 @@ in
     home.programs.default
     home.services.default
     home.themes.default
+    home.dev
     home.utils
   ];
   home.packages = attrValues {
@@ -48,7 +49,6 @@ in
       mediainfo
       imagemagick
       trash-cli
-      nushell
       ;
   };
 }
