@@ -1,13 +1,21 @@
-{ nixos, ... }:
-
+{ pkgs, ... }:
 {
-  imports = [
-    nixos.common
-    nixos.services
-  ];
+  # Enable backlight.
+  programs.light.enable = true;
+  # Enable gtk settings
+  programs.dconf.enable = true;
+  # Enable upower.
+  services.upower.enable = true;
 
-  time.timeZone = "Asia/Manila";
-  i18n.defaultLocale = "en_US.UTF-8";
+  environment.systemPackages = builtins.attrValues {
+    # Nano editor is installed by default.
+    inherit (pkgs)
+      wget
+      unzip
+      libnotify
+      xclip
+      ;
+  };
 
   # suckless software
   suckless = {
@@ -17,16 +25,12 @@
     st = true;
   };
 
-  # hardware-related
-  boot.kernelParams = [ "i915.enable_guc=2" ];
-  hardware.intelgpu.vaapiDriver = "intel-media-driver";
-
-  # Console settings.
+  time.timeZone = "Asia/Manila";
+  i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "sun12x22";
     keyMap = "us";
   };
-
   #######################################
   #   OFF LIMIT  SYSTEM STATE VERSION   #
   #######################################
