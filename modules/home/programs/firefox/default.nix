@@ -1,5 +1,9 @@
 { pkgs, ... }:
 {
+  # home.file.".mozilla/profile1/chrome" = {
+  #   source = inputs.dotfiles + "/firefox/cascade";
+  # };
+
   programs.firefox = {
     enable = true;
     languagePacks = [
@@ -26,7 +30,7 @@
       profile1 = {
         id = 0;
         name = "profile1";
-        userChrome = builtins.readFile ./cascade/userChrome.css;
+        userChrome = builtins.readFile ./userChrome.css;
         settings = {
           "browser.startup.page" = 3;
           "privacy.clearSiteData.cookiesAndStorage" = true;
