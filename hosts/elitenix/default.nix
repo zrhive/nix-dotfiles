@@ -5,6 +5,7 @@
     (inputs.nixos-hardware + "/common/gpu/intel/whiskey-lake")
     (import inputs.suckless)
     nixos.common
+    nixos.programs
     nixos.services
     ./configuration.nix
     ./hardware-configuration.nix

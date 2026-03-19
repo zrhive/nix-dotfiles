@@ -1,5 +1,5 @@
 {
-  default = [
+  imports = [
     ./ssh
   ];
 }
