@@ -1,14 +1,10 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   users.users.zhyie = {
-    extraGroups = [
-      "wheel"
-      "audio"
-      "video"
-    ];
+    extraGroups = [ "wheel" ];
     shell = pkgs.nushell;
-    openssh.authorizedKeys.keyFiles = [
-      (inputs.secrets + "/keys/zhyie/id_ed25519.pub")
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIClErKJYbgALjJBXGxGyTrO/DdbHXK1sHkYh+xQjxVE5 zhyie@nixos"
     ];
   };
 }

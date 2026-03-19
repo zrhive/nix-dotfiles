@@ -1,15 +1,13 @@
 {
   ## General
   DontCheckDefaultBrowser = true;
+  OfferToSaveLogins = false;
+  GenerativeAI.Enabled = false;
   DisplayBookmarksToolbar = "newtab";
   DisplayMenuBar = "default-off";
-  Homepage.StartPage = "previous-session";
-  SanitizedOnShutdown = {
+  SanitizeOnShutdown = {
     Cache = true;
-    Cookies = true;
     FormData = true;
-    History = true;
-    SiteSettings = true;
   };
 
   ## Firefox
@@ -27,13 +25,9 @@
     SponsoredStories = false;
     Snippets = false;
   };
-  FirefoxSuggest = {
-    WebSuggestions = false;
-    SponsoredSuggestions = false;
-    ImprovedSuggest = false;
-  };
   UserMessaging = {
     ExtensionRecommendations = false;
+    FeatureRecommendations = true;
     UrlbarInterventions = false;
     SkipOnboarding = true;
     MoreFromMozilla = false;
@@ -41,32 +35,23 @@
   };
 
   ## Search
-  SearchBar = "unified";
   SearchSuggestEnabled = false;
-  # SearchEngines = {
-  #   Default = "DuckDuckGo";
-  #   Remove = [
-  #     "Google"
-  #     "Bing"
-  #     "eBay"
-  #     "Perplexity"
-  #     "Wikipedia"
-  #   ];
-  # Add = [
-  #   {
-  #     "Name" = "DuckDuckGo";
-  #     "URLTemplate" = "https://duckduckgo.com/?q={searchTerms}";
-  #     "IconURL" = "https://duckduckgo.com/favicon.ico";
-  #     "Alias" = "ddg";
-  #   }
-  #   {
-  #     "Name" = "Startpage";
-  #     "URLTemplate" = "https://www.startpage.com/sp/search?query={searchTerms}";
-  #     "IconURL" = "https://www.startpage.com/favicon.ico";
-  #     "Alias" = "sp";
-  #   }
-  # ];
-  # };
+  SearchEngines = {
+    Remove = [
+      "Google"
+      "Bing"
+      "Perplexity"
+      "Wikipedia"
+    ];
+    Add = [
+      {
+        "Name" = "Startpage";
+        "URLTemplate" = "https://www.startpage.com/sp/search?query={searchTerms}";
+        "IconURL" = "https://www.startpage.com/favicon.ico";
+        "Alias" = "sp";
+      }
+    ];
+  };
 
   ## Privacy and Security
   PasswordManagerEnabled = false;
@@ -76,20 +61,11 @@
     Cryptomining = true;
     Fingerprinting = true;
   };
-  HttpsOnlyMode = "enabled";
+  HttpsOnlyMode = "forced_enabled";
   DNSOverHTTPS = {
     Enabled = true;
     ProviderURL = " https://sky.rethinkdns.com/1:AAoACAgA";
     Fallback = true;
-  };
-  Permissions = {
-    Camera.BlockNewRequests = true;
-    Microphone.BlockNewRequests = true;
-    Location.BlockNewRequests = true;
-    Notification.BlockNewRequests = true;
-    Autoplay.Default = "block-audio";
-    VirtualReality.BlockNewRequests = true;
-    ScreenShare.BlockNewRequests = true;
   };
   Cookies = {
     Allow = [
@@ -105,7 +81,7 @@
   ## Extensions
   "3rdParty" = {
     Extensions = {
-      "uBlock0@raymondhill.net".adminSettings = builtins.readFile ./ublock.txt;
+      "uBlock0@raymondhill.net".adminSettings = (builtins.readFile ./ublock.txt);
     };
   };
   ExtensionSettings = {
@@ -115,12 +91,18 @@
       install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
       private_browsing = true;
     };
-    # bitwarden
-    "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
-      installation_mode = "normal_installed";
-      install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
+    # keepassxc
+    "keepassxc-browser@keepassxc.org" = {
+      installation_mode = "allowed";
+      # install_url = "https://addons.mozilla.org/firefox/downloads/latest/keepassxc-browser/latest.xpi";
       private_browsing = true;
     };
+    # bitwarden
+    # "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
+    #   installation_mode = "allowed";
+    #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
+    #   private_browsing = true;
+    # };
   };
 
   ## Preferences

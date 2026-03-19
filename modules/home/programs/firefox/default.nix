@@ -7,13 +7,37 @@
       "tl"
     ];
 
+    ## POLICIES
+    policies = import ./policies.nix;
+
     ## PROFILES
     profiles = {
-      ## default
-      default = {
-        id = 0;
-        name = "default";
+      ## secondary profile
+      profile2 = {
+        id = 1;
+        name = "profile2";
         search = {
+          default = "ddg";
+          privateDefault = "ddg";
+        };
+      };
+
+      ## default
+      profile1 = {
+        id = 0;
+        name = "profile1";
+        userChrome = builtins.readFile ./cascade/userChrome.css;
+        settings = {
+          "browser.startup.page" = 3;
+          "privacy.clearSiteData.cookiesAndStorage" = true;
+          "privacy.clearHistory.cookiesAndStorage" = true;
+          "places.history.enabled" = false;
+          # "privacy.window.maxInnerWidth" = 1920;
+          # "privacy.window.maxInnerHeight" = 1080;
+          # "privacy.resistFingerprinting.block_mozAddonManager" = true;
+        };
+        search = {
+          default = "sp";
           engines = {
             "Nix Packages" = {
               urls = [
@@ -92,21 +116,7 @@
             };
           };
         };
-        userChrome = builtins.readFile ./cascade/userChrome.css;
-      };
-
-      ## secondary profile
-      profile_1 = {
-        id = 1;
-        name = "profile_1";
-        search = {
-          default = "DuckDuckGo";
-          privateDefault = "DuckDuckGo";
-        };
       };
     };
-
-    ## POLICIES
-    policies = import ./policies.nix;
   };
 }
