@@ -5,5 +5,7 @@
     ./printing.nix
     # ./dnscrypt.nix
     ./lightdm.nix
+    ./ssh
+    ./fail2ban
   ];
 }

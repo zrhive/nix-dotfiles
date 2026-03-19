@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, userList, ... }:
 {
   nix = {
     # Eliminating redundant copies of store paths.
@@ -30,7 +30,7 @@
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
 
-      trusted-users = [ "zhyie" ];
+      trusted-users = userList;
     };
 
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];

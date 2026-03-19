@@ -1,6 +1,8 @@
 {
   imports = [
     ./firefox
+    ./ssh
+
     ./bash.nix
     ./feh.nix
     ./kitty.nix
