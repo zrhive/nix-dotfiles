@@ -9,10 +9,4 @@
   };
 
   # additions = final: _prev: import ../packages final.pkgs;
-
-  # extend-lib = final: prev: {
-  #   extend = import inputs.nixpkgs prev.lib // {
-  #
-  #   };
-  # };
 }

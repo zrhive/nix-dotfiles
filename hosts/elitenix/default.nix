@@ -6,8 +6,8 @@
     (import inputs.suckless)
     nixos.common
     nixos.security
-    nixos.programs
     nixos.services
+    # nixos.themes
     ./configuration.nix
     ./hardware-configuration.nix
     ./laptop.nix

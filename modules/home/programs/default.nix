@@ -8,6 +8,6 @@
     ./kitty.nix
     ./medias.nix
     ./rofi.nix
-    ./yazi.nix
+    ./yazi
   ];
 }

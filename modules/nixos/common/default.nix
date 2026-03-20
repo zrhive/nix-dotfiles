@@ -5,7 +5,6 @@
     ./boot.nix
     ./networking.nix
     ./user.nix
-    ./inputs.nix
-    ./pipewire.nix
+    ./libinput.nix
   ];
 }

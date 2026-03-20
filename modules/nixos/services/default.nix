@@ -1,10 +1,11 @@
 {
   imports = [
-    ./avahi.nix
-    ./bluetooth.nix
-    ./printing.nix
-    # ./dnscrypt.nix
-    ./lightdm.nix
+    ./avahi
+    ./bluetooth
+    ./pipewire
+    ./printing
+    # ./dnscrypt
+    ./lightdm
     ./ssh
     ./fail2ban
   ];

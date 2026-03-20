@@ -62,7 +62,7 @@
     Cryptomining = true;
     Fingerprinting = true;
   };
-  HttpsOnlyMode = "forced_enabled";
+  HttpsOnlyMode = "force_enabled";
   DNSOverHTTPS = {
     Enabled = true;
     ProviderURL = " https://sky.rethinkdns.com/1:AAoACAgA";
@@ -82,7 +82,9 @@
   ## Extensions
   "3rdparty" = {
     Extensions = {
-      "uBlock0@raymondhill.net".adminSettings = builtins.readFile (inputs.dotfiles "/firefox/ublock.txt");
+      "uBlock0@raymondhill.net".adminSettings = builtins.readFile (
+        inputs.dotfiles + "/firefox/ublock.txt"
+      );
     };
   };
   ExtensionSettings = {

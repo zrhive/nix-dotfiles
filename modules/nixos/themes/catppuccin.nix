@@ -7,6 +7,5 @@
     flavor = "macchiato";
 
     tty.enable = true;
-    grub.enable = true;
   };
 }

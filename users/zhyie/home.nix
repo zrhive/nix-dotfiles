@@ -1,22 +1,11 @@
 {
-  lib,
   pkgs,
   home,
-  scripts,
   ...
 }:
-
-let
-  inherit (lib) attrValues;
-  sc = scripts { inherit pkgs; };
-
-  # outLink = config.lib.file.mkOutOfStoreSymlink;
-in
 {
   home.file = {
-    ".gitconfig" = {
-      source = builtins.toString ./.gitconfig;
-    };
+    ".gitconfig".source = ./.gitconfig;
   };
 
   dotfiles.configFiles = [
@@ -24,7 +13,6 @@ in
     "kitty"
     "rofi"
     "yazi"
-    # "dunst"
   ];
 
   vars = {
@@ -42,9 +30,7 @@ in
     home.dev
     home.utils
   ];
-  home.packages = attrValues {
-    inherit (sc) hello;
-
+  home.packages = builtins.attrValues {
     inherit (pkgs)
       mediainfo
       imagemagick

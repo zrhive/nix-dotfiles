@@ -3,25 +3,24 @@
 
   inputs = {
     self.submodules = true;
-    # NIX PACKAGES FOR NIXOS
+    ## NIXPKGS
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # MODULES FOR HARDWARE QUIRKS
+    ## HARDWARE MODULES
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    # HOME MANAGER FOR NIX
+    ## HOME MANAGER
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # SECRET MANAGEMENT
+    ## SECRET MANAGEMENT
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # CATPUCCIN THEMES
+    ## CATPUCCIN THEMES
     catppuccin.url = "github:catppuccin/nix/release-25.11";
-
-    # PERSONAL REPO
+    ## PERSONAL REPO
     suckless = {
       url = "path:/home/zhyie/.suckless";
       flake = false;
@@ -39,20 +38,15 @@
   outputs =
     { self, nixpkgs, ... }@inputs:
     let
-      inherit (nixpkgs) lib;
-      # systems = lib.systems.flakeExposed;
-      # eachSystem = lib.genAttrs systems;
-
-      # List of hosts and their specifications
+      # Hosts and their specifications
       hosts = import ./hosts;
       users = import ./users;
       # Nixos and home modules
-      nixos = import ./modules/nixos;
-      home = import ./modules/home;
-      # dots = import ./dotfiles;
-      scripts = import ./scripts;
-      # modules = import ./modules;
+      nixos = self.nixosModules;
+      home = self.homeModules;
 
+      inherit (nixpkgs) lib;
+      # systems = lib.systems.flakeExposed;
       # Get the systems within hosts attrs, lib.unique to prevent duplicates
       # systems = lib.unique (lib.attrValues (lib.mapAttrs (_: cfg: cfg.system) hosts));
       systems = lib.attrValues (lib.mapAttrs (_: cfg: cfg.system) hosts);
@@ -68,7 +62,6 @@
           users
           nixos
           home
-          scripts
           ;
       };
       _lib = import ./lib args;
@@ -79,8 +72,8 @@
       overlays = import ./overlays { inherit inputs; };
       # devShell = eachSystem (system: import ./shell.nix { inherit system; });
 
-      # nixosModules = { default = ./nixos; };
-      # homeModules = { default = ./home; };
+      nixosModules = import ./modules/nixos;
+      homeModules = import ./modules/home;
 
       # GENERATE HOSTS|HOMES CONFIGURATION
       nixosConfigurations = lib.mapAttrs _lib.mkHost hosts;
