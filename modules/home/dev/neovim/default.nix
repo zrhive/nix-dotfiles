@@ -31,9 +31,9 @@ in
         nixd
         nixfmt-tree
         deadnix
+        statix
         clang
         clang-tools
-        cargo
         ;
     });
 

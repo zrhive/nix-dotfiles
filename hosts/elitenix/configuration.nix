@@ -13,7 +13,7 @@
       wget
       unzip
       libnotify
-      xclip
+      alsa-utils
       ;
   };
 

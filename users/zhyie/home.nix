@@ -1,8 +1,4 @@
-{
-  pkgs,
-  home,
-  ...
-}:
+{ home, ... }:
 {
   home.file = {
     ".gitconfig".source = ./.gitconfig;
@@ -13,6 +9,7 @@
     "kitty"
     "rofi"
     "yazi"
+    "btop"
   ];
 
   vars = {
@@ -30,11 +27,6 @@
     home.dev
     home.utils
   ];
-  home.packages = builtins.attrValues {
-    inherit (pkgs)
-      mediainfo
-      imagemagick
-      trash-cli
-      ;
-  };
+  # home.packages = builtins.attrValues {
+  # };
 }

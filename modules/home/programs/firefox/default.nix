@@ -1,8 +1,17 @@
-{ pkgs, inputs, ... }:
 {
-  # home.file.".mozilla/profile1/chrome" = {
-  #   source = inputs.dotfiles + "/firefox/cascade";
-  # };
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
+let
+  inherit (config.lib.file) mkOutOfStoreSymlink;
+  inherit (config.home) homeDirectory;
+in
+{
+  home.file.".mozilla/firefox/profile1/chrome/userChrome.css" = {
+    source = mkOutOfStoreSymlink (homeDirectory + "/.os/dotfiles/firefox/userChrome.css");
+  };
 
   programs.firefox = {
     enable = true;
@@ -30,16 +39,20 @@
       profile1 = {
         id = 0;
         name = "profile1";
-        userChrome = builtins.readFile (inputs.dotfiles + "/firefox/userChrome.css");
+        # userChrome = builtins.readFile (inputs.dotfiles + "/firefox/userChrome.css");
         settings = {
           "browser.startup.page" = 3;
-          "privacy.clearSiteData.cookiesAndStorage" = true;
-          "privacy.clearHistory.cookiesAndStorage" = true;
           "places.history.enabled" = false;
+          "privacy.clearSiteData.browsingHistoryAndDownloads" = true;
+          "privacy.clearSiteData.cookiesAndStorage" = true;
           "privacy.clearSiteData.cache" = true;
           "privacy.clearSiteData.formdata" = true;
+          "privacy.clearSiteData.siteSettings" = true;
+          "privacy.clearHistory.browsingHistoryAndDownloads" = true;
+          "privacy.clearHistory.cookiesAndStorage" = true;
           "privacy.clearHistory.cache" = true;
           "privacy.clearHistory.formdata" = true;
+          "privacy.clearHistory.siteSettings" = true;
           # "privacy.window.maxInnerWidth" = 1920;
           # "privacy.window.maxInnerHeight" = 1080;
           # "privacy.resistFingerprinting.block_mozAddonManager" = true;

@@ -164,8 +164,8 @@
     "suckless": {
       "flake": false,
       "locked": {
-        "lastModified": 1773964977,
-        "narHash": "sha256-kEStzeXfe9GHw78dfIHEm350330yexIxTNIvwm2AUvI=",
+        "lastModified": 1774045812,
+        "narHash": "sha256-TGwjPk9HpYapQw3o2hTkah/UkSxcgZzapOcnRqwEhb0=",
         "path": "/home/zhyie/.suckless",
         "type": "path"
       },

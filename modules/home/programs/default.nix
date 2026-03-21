@@ -1,13 +1,13 @@
 {
   imports = [
+    ./btop
+    ./bash
+    ./feh
     ./firefox
+    ./kitty
+    ./rofi
     ./ssh
-
-    ./bash.nix
-    ./feh.nix
-    ./kitty.nix
-    ./medias.nix
-    ./rofi.nix
     ./yazi
+    ./medias.nix
   ];
 }

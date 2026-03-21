@@ -6,6 +6,8 @@
     shellWrapperName = "y";
     extraPackages = builtins.attrValues {
       inherit (pkgs)
+        tar
+        lazygit
         mediainfo
         trash-cli
         ;

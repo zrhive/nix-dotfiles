@@ -9,6 +9,7 @@
   SanitizeOnShutdown = {
     Cache = true;
     FormData = true;
+    locked = false;
   };
 
   ## Firefox
@@ -38,6 +39,7 @@
   ## Search
   SearchSuggestEnabled = false;
   SearchEngines = {
+    Default = "DuckDuckGo";
     Remove = [
       "Google"
       "Bing"
@@ -49,7 +51,7 @@
         "Name" = "Startpage";
         "URLTemplate" = "https://www.startpage.com/sp/search?query={searchTerms}";
         "IconURL" = "https://www.startpage.com/favicon.ico";
-        "Alias" = "sp";
+        "Alias" = "@sp";
       }
     ];
   };
@@ -96,22 +98,25 @@
     };
     # keepassxc
     "keepassxc-browser@keepassxc.org" = {
-      installation_mode = "allowed";
+      installation_mode = "normal_installed";
       install_url = "https://addons.mozilla.org/firefox/downloads/latest/keepassxc-browser/latest.xpi";
       private_browsing = true;
     };
     # bitwarden
-    # "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
-    #   installation_mode = "allowed";
-    #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
-    #   private_browsing = true;
-    # };
+    "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
+      installation_mode = "normal_installed";
+      install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
+      private_browsing = true;
+    };
   };
 
   ## Preferences
   Preferences = {
     "browser.aboutConfig.showWarning" = false;
     "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+
+    # ai
+    "browser.ai.control.default" = "blocked";
 
     # crash reports
     "browser.tabs.crashReporting.sendReport" = false;
@@ -131,11 +136,20 @@
     "browser.urlbar.suggest.bookmark" = false;
     "browser.urlbar.suggest.openpage" = false;
     "browser.urlbar.suggest.topsites" = false;
+    "browser.urlbar.suggest.recentsearches" = false;
+    "browser.urlbar.suggest.engines" = false;
+    "browser.urlbar.suggest.quickactions" = false;
+
+    # search shortcuts
+    "browser.urlbar.shortcuts.bookmarks" = false;
+    "browser.urlbar.shortcuts.history" = false;
+    "browser.urlbar.shortcuts.tabs" = false;
 
     # privacy
     "browser.formfill.enable" = false;
     "extensions.formautofill.creditCards.enabled" = false;
     "extensions.formautofill.addresses.enabled" = false;
+    "nimbus.rollouts.enabled" = false;
     # "privacy.resistFingerprinting" = true;
     # "privacy.resistFingerprinting.pbmode" = true;
     # "privacy.spoof_english" = 1;
