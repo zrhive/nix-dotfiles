@@ -12,13 +12,13 @@
     "btop"
   ];
 
-  vars = {
-    flake = ".os";
-    user = {
-      name = "zhyie";
-      email = "zhyie";
-    };
-  };
+  # vars = {
+  #   flake = ".os";
+  #   user = {
+  #     name = "zhyie";
+  #     email = "zhyie";
+  #   };
+  # };
 
   imports = [
     home.programs.default

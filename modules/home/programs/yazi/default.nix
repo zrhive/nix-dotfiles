@@ -6,10 +6,13 @@
     shellWrapperName = "y";
     extraPackages = builtins.attrValues {
       inherit (pkgs)
-        tar
+        ueberzugpp
+        glow
         lazygit
+        xclip
         mediainfo
         trash-cli
+        gnutar
         ;
     };
   };

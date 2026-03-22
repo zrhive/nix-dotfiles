@@ -85,7 +85,7 @@
   "3rdparty" = {
     Extensions = {
       "uBlock0@raymondhill.net".adminSettings = builtins.readFile (
-        inputs.dotfiles + "/firefox/ublock.txt"
+        inputs.dotfiles + "/firefox/extensions/ublock.txt"
       );
     };
   };
@@ -150,9 +150,9 @@
     "extensions.formautofill.creditCards.enabled" = false;
     "extensions.formautofill.addresses.enabled" = false;
     "nimbus.rollouts.enabled" = false;
-    # "privacy.resistFingerprinting" = true;
-    # "privacy.resistFingerprinting.pbmode" = true;
-    # "privacy.spoof_english" = 1;
+    "privacy.resistFingerprinting" = true;
+    "privacy.resistFingerprinting.pbmode" = true;
+    "privacy.spoof_english" = 1;
 
     # password
     "signon.autofillForms" = false;

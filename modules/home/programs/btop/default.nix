@@ -2,6 +2,6 @@
 {
   programs.btop = {
     enable = true;
-    packages = pkgs.unstable.btop;
+    package = pkgs.unstable.btop;
   };
 }

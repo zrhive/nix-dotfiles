@@ -9,12 +9,12 @@ in
       type = types.listOf (
         types.submodule {
           option = {
-            name = mkOption {
+            category = mkOption {
               type = types.str;
               default = "core";
               description = "Name of bundled modules.";
             };
-            specific = mkOption {
+            names = mkOption {
               type = types.listOf;
               default = [ "default" ];
               description = "List of specific modules.";

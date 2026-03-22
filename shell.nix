@@ -1,7 +1,6 @@
 let
   pkgs = import (import ./.).nixpkgs {
     system = builtins.currentSystem;
-    overlays = [ ];
   };
 in
 pkgs.mkShellNoCC {

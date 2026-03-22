@@ -43,7 +43,7 @@
       users = import ./users;
       # Nixos and home modules
       nixos = self.nixosModules;
-      home = self.homeModules;
+      home = self.homeManagerModules;
       # set of args to pass in
       args = {
         inherit
@@ -55,23 +55,23 @@
           home
           ;
       };
-      # _lib = import ./lib args;
 
       lib = nixpkgs.lib // import ./lib args;
       # systems = lib.systems.flakeExposed;
       # Get the systems within hosts attrs, lib.unique to prevent duplicates
-      # systems = lib.unique (lib.attrValues (lib.mapAttrs (_: cfg: cfg.system) hosts));
+      # systems = lib.unique (lib.attrValues (lib.mapAttrs (_: h: h.system) hosts));
       systems = lib.attrValues (lib.mapAttrs (_: cfg: cfg.system) hosts);
       eachSystem = lib.genAttrs systems;
+      # eachSystem = f: lib.genAttrs systems (system: f nixpkgs.legacyPackages.${system} // { inherit inputs system; });
     in
     {
       formatter = eachSystem (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
-      # packages = forAllSystems (system: import ./packages nixpkgs.legacyPackages.${system});
       overlays = import ./overlays { inherit inputs; };
-      # devShell = eachSystem (system: import ./shell.nix { inherit system; });
+      # packages = forAllSystems (system: import ./packages nixpkgs.legacyPackages.${system});
+      # devShell = eachSystem (system: import ./shell.nix nixpkgs.legacyPackages.${system});
 
       nixosModules = import ./modules/nixos;
-      homeModules = import ./modules/home;
+      homeManagerModules = import ./modules/home;
 
       # GENERATE HOSTS|HOMES CONFIGURATION
       nixosConfigurations = lib.mapAttrs lib.mkHost hosts;

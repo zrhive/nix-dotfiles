@@ -7,7 +7,8 @@
     nixos.common
     nixos.security
     nixos.services
-    # nixos.themes
+    nixos.themes.catppuccin
+    nixos.themes.nmtui
     ./configuration.nix
     ./hardware-configuration.nix
     ./laptop.nix

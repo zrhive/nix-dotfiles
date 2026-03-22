@@ -2,14 +2,15 @@
 
 let
   inherit (args.inputs.nixpkgs) lib;
+  # pkgs = import args.inputs.nixpkgs { };
 in
 {
   # mkHost = host: cfg: import ./mkNixos.nix (args // {
   #   inherit host cfg;
   # });
-
   mkHost =
     host: cfg:
+    # if pkgs.stdenv.hostPlatform.isLinux then
     if lib.hasSuffix "linux" cfg.system then
       import ./mkNixos.nix (
         args
