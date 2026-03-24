@@ -12,7 +12,6 @@
         xclip
         mediainfo
         trash-cli
-        gnutar
         ;
     };
   };
