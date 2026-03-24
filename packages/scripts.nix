@@ -1,9 +1,28 @@
 { pkgs, inputs, ... }:
 
 let
+  inherit (builtins)
+    attrNames
+    readDir
+    readFile
+    listToAttrs
+    replaceStrings
+    map
+    ;
+
   dir = inputs.dotfiles + "/scripts";
-  scripts' = builtins.attrNames (builtins.readDir dir);
-  scripts = ;
-  mkScript = script: pkgs.writeScriptBin script (builtins.readFile dir + "${script}");
+  scripts = attrNames (readDir dir);
+  mkScript = name: pkgs.writeScriptBin name (readFile (dir + "/${name}.sh"));
 in
-mkScript scripts
+listToAttrs (
+  map (
+    script:
+    let
+      name' = replaceStrings [ ".sh" ] [ "" ] script;
+    in
+    {
+      name = name';
+      value = mkScript name';
+    }
+  ) scripts
+)
