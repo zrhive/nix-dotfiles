@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   services.dunst = {
     enable = true;
@@ -7,6 +7,7 @@
       name = "Papirus";
       size = "32x32";
     };
+
     configFile = inputs.dotfiles + "/dunst/dunstrc";
   };
 }
