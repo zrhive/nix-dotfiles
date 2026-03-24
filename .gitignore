@@ -1,2 +1,6 @@
-.direnv/
-tmp/
+# build outputs
+result
+result-*
+
+# direnv output
+.direnv
