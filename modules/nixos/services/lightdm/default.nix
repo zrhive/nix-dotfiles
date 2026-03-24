@@ -19,7 +19,7 @@
           "~power"
         ];
         # output: Sun Jan 01 23:59
-        clock-format = "%a %b %d %H:%M";
+        clock-format = "%b %d %H:%M:%S (%a)";
       };
     };
 
