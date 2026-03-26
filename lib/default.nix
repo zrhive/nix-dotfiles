@@ -2,12 +2,8 @@
 
 let
   inherit (args.inputs.nixpkgs) lib;
-  # pkgs = import args.inputs.nixpkgs { };
 in
 {
-  # mkHost = host: cfg: import ./mkNixos.nix (args // {
-  #   inherit host cfg;
-  # });
   mkHost =
     host: cfg:
     # if pkgs.stdenv.hostPlatform.isLinux then
@@ -15,7 +11,6 @@ in
       import ./mkNixos.nix (
         args
         // {
-          # inherit host; inherit (cfg) system userList moduleList;
           inherit host cfg;
         }
       )
