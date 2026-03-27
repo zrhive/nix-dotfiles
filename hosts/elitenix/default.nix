@@ -5,10 +5,12 @@
     (inputs.nixos-hardware + "/common/gpu/intel/whiskey-lake")
     (import inputs.suckless)
     nixos.common
+    nixos.hardware
     nixos.security
     nixos.services
     nixos.themes.catppuccin
     nixos.themes.nmtui
+    nixos.xserver
     ./configuration.nix
     ./hardware-configuration.nix
     ./laptop.nix

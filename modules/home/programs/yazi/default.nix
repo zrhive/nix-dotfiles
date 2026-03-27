@@ -8,6 +8,7 @@
       inherit (pkgs)
         ueberzugpp
         glow
+        ouch
         lazygit
         xclip
         mediainfo

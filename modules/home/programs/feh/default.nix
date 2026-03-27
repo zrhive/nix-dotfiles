@@ -13,28 +13,28 @@
     # Key binds
     keybindings = {
       next_img = [
-        "l"
-        "Right"
-      ];
-      prev_img = [
-        "h"
-        "Left"
-      ];
-      scroll_left = [
-        "H"
-        "S-Left"
-      ];
-      scroll_right = [
         "L"
         "S-Right"
       ];
+      prev_img = [
+        "H"
+        "S-Left"
+      ];
+      scroll_left = [
+        "h"
+        "Left"
+      ];
+      scroll_right = [
+        "l"
+        "Right"
+      ];
       scroll_up = [
-        "K"
-        "S-Up"
+        "k"
+        "Up"
       ];
       scroll_down = [
-        "J"
-        "S-Down"
+        "j"
+        "Down"
       ];
       toggle_pause = "p";
       save_filelist = "S";
