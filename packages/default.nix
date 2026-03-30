@@ -1,4 +1,4 @@
 { pkgs, inputs }:
 {
-  scripts = pkgs.callPackages ./scripts.nix { inherit inputs; };
+  scripts = pkgs.callPackage ./scripts.nix { inherit inputs; };
 }
