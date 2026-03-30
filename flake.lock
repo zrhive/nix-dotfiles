@@ -19,6 +19,28 @@
         "type": "github"
       }
     },
+    "direnv-instant": {
+      "inputs": {
+        "flake-parts": "flake-parts",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "treefmt-nix": "treefmt-nix"
+      },
+      "locked": {
+        "lastModified": 1774759061,
+        "narHash": "sha256-+gfCsQbUOpYmeM94jdUvewKZWhzGU402/AIvMLFKwSU=",
+        "owner": "Mic92",
+        "repo": "direnv-instant",
+        "rev": "eafb6df537d9d78a8d926e8a5a341525f65de45f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "direnv-instant",
+        "type": "github"
+      }
+    },
     "dotfiles": {
       "flake": false,
       "locked": {
@@ -30,6 +52,27 @@
         "type": "path"
       },
       "parent": []
+    },
+    "flake-parts": {
+      "inputs": {
+        "nixpkgs-lib": [
+          "direnv-instant",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1772408722,
+        "narHash": "sha256-rHuJtdcOjK7rAHpHphUb1iCvgkU3GpfvicLMwwnfMT0=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "f20dc5d9b8027381c474144ecabc9034d6a839a3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
     },
     "home-manager": {
       "inputs": {
@@ -119,6 +162,7 @@
     "root": {
       "inputs": {
         "catppuccin": "catppuccin",
+        "direnv-instant": "direnv-instant",
         "dotfiles": "dotfiles",
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
@@ -172,6 +216,27 @@
       "original": {
         "path": "/home/zhyie/.suckless",
         "type": "path"
+      }
+    },
+    "treefmt-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "direnv-instant",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1773297127,
+        "narHash": "sha256-6E/yhXP7Oy/NbXtf1ktzmU8SdVqJQ09HC/48ebEGBpk=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "71b125cd05fbfd78cab3e070b73544abe24c5016",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "type": "github"
       }
     }
   },
