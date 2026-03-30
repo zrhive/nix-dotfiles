@@ -1,11 +1,12 @@
-{ userList, ... }@args:
-
+{
+  inputs,
+  users,
+  userList,
+  home,
+  ...
+}: # @args:
 let
-  inherit (args)
-    inputs
-    users
-    home
-    ;
+  # inherit (args) inputs users;
   inherit (inputs.nixpkgs.lib) genAttrs;
   # inherit (cfg) userList stateVersion;
 
