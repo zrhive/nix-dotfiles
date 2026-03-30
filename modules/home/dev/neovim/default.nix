@@ -1,14 +1,16 @@
 { config, pkgs, ... }:
-
-let
-  outLink = config.lib.file.mkOutOfStoreSymlink;
-  homePath = config.home.homeDirectory;
-in
-
 {
-  xdg.configFile."nvim" = {
-    source = outLink "${homePath}/.os/dotfiles/nvim";
-    recursive = true;
+  xdg.configFile."nvim" =
+    let
+      inherit (config.lib.file) mkOutOfStoreSymlink;
+      inherit (config.home) homeDirectory;
+    in
+    {
+      source = mkOutOfStoreSymlink "${homeDirectory}/.os/dotfiles/nvim";
+    };
+
+  home.sessionVariables = {
+    VISUAL = "nvim";
   };
 
   programs.neovim = {
@@ -18,10 +20,9 @@ in
     viAlias = true;
     withNodeJs = true;
 
-    extraPackages = [
-      pkgs.lua54Packages.luacheck
-    ]
-    ++ (builtins.attrValues {
+    extraLuaPackages = p: [ p.luacheck ];
+
+    extraPackages = builtins.attrValues {
       inherit (pkgs)
         ripgrep
         fzf
@@ -34,8 +35,10 @@ in
         statix
         clang
         clang-tools
+        gcc
+        tree-sitter
         ;
-    });
+    };
 
     # plugins = builtins.attrValues {
     #   inherit (pkgs.vimPlugins)
