@@ -4,5 +4,5 @@
     ./xscreensaver.nix
   ];
 
-  suckless = import ./suckless;
+  # suckless = import ./suckless;
 }

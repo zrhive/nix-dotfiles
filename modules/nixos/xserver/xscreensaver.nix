@@ -1,11 +1,11 @@
-{ pkgs, ... }:
+{ ... }:
 {
   services.xscreensaver = {
     enable = true;
-    hooks = {
-
-    };
+    # hooks = {
+    #
+    # };
   };
 
-  programs.xscreensaver.enable = true;
+  # programs.xscreensaver.enable = true;
 }

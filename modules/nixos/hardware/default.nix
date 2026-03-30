@@ -1,17 +1,15 @@
-rec {
-  inputs = import ./inputs;
-
+{
   imports = [
-    inputs
+    ./inputs
     ./audio
     ./bluetooth
     ./power
-    ./printing
+    # ./printing
   ];
 
-  inherit (inputs)
-    mouse
-    touchpad
-    trackpoint
-    ;
+  # inherit (inputs)
+  #   mouse
+  #   touchpad
+  #   trackpoint
+  #   ;
 }

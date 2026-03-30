@@ -1,9 +1,6 @@
 {
   imports = [
     ./avahi
-    ./bluetooth
-    ./pipewire
-    ./printing
     # ./dnscrypt
     ./lightdm
     ./ssh
