@@ -1,10 +1,6 @@
-{ ... }:
 {
-  programs.ssh = {
-    enable = true;
-
-    matchBlocks."*" = {
-      addKeysToAgent = "yes";
-    };
-  };
+  imports = [
+    ./ssh.nix
+    ./keychain.nix
+  ];
 }

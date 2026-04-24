@@ -1,12 +1,7 @@
 {
-  # HOME ENTRY
-  default = import ./home.nix;
-  # as nixos module
-  nixos = import ./nixos.nix;
-  # utils
   utils = import ./utils;
-
   dev = import ./dev;
+  flatpak = import ./flatpak;
 
   # PROGRAMS
   programs = {

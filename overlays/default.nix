@@ -8,5 +8,11 @@
     };
   };
 
-  # additions = final: _prev: import ../packages final.pkgs;
+  # Custom built packages
+  custom-packages =
+    final: _:
+    import ../packages {
+      inherit inputs;
+      pkgs = final;
+    };
 }

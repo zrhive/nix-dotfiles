@@ -6,6 +6,9 @@
     enable = true;
     flavor = "macchiato";
 
-    tty.enable = true;
+    tty = {
+      enable = true;
+      flavor = "mocha";
+    };
   };
 }

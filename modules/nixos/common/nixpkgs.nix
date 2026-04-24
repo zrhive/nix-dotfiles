@@ -7,6 +7,7 @@
     };
     overlays = [
       self.overlays.unstable-packages
+      self.overlays.custom-packages
     ];
   };
 }

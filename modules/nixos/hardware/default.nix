@@ -4,12 +4,8 @@
     ./audio
     ./bluetooth
     ./power
+    ./backlight
+    ./laptop
     # ./printing
   ];
-
-  # inherit (inputs)
-  #   mouse
-  #   touchpad
-  #   trackpoint
-  #   ;
 }

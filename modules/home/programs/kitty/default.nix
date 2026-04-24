@@ -1,16 +1,5 @@
 { pkgs, ... }:
-
 {
-  # Install kitty packages
+  # Install kitty package
   home.packages = [ pkgs.kitty ];
-  # home.file.".config/kitty" = {
-  #   source = ../../dotfiles/kitty;
-  #   recursive = true;
-  # };
-  #
-  # # Configure kitty
-  # programs.kitty = {
-  #   enable = true;
-  # };
-
 }

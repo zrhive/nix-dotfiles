@@ -1,6 +1,5 @@
 {
   nixos = import ./nixos;
-  # home = import ./home;
-
+  home = import ./home;
   # profiles = import ./profiles;
 }

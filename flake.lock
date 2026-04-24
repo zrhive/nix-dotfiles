@@ -193,14 +193,19 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "path": "git@github.com:zhyie/nix-secrets.git",
-        "type": "path"
+        "lastModified": 1774113865,
+        "narHash": "sha256-vlX9gKFRFiSpoaf49Leh7OpSran7asffuOEJuaAw9Ls=",
+        "ref": "main",
+        "rev": "97de1589e60202f1e7423b8409942a58e32500ea",
+        "revCount": 5,
+        "type": "git",
+        "url": "ssh://git@github.com/zhyie/nix-secrets.git"
       },
       "original": {
-        "path": "git@github.com:zhyie/nix-secrets.git",
-        "type": "path"
-      },
-      "parent": []
+        "ref": "main",
+        "type": "git",
+        "url": "ssh://git@github.com/zhyie/nix-secrets.git"
+      }
     },
     "sops-nix": {
       "inputs": {
@@ -223,12 +228,13 @@
       }
     },
     "suckless": {
+      "flake": false,
       "locked": {
-        "lastModified": 1776796396,
-        "narHash": "sha256-gLnR5ZNOUNrdriFMqYgNvvoTzy5/IOx5SRsZdQ9win0=",
+        "lastModified": 1777020128,
+        "narHash": "sha256-9a/RoWddlp1nvX1NldGP+Re3apYc+kzllxp1cKvV/ic=",
         "owner": "zrhive",
         "repo": "suckless",
-        "rev": "df0773e328f503e9c434481b6552c39161e4c14b",
+        "rev": "9303064af428936fe5fd1b9c265c01cbdaa7fa92",
         "type": "github"
       },
       "original": {

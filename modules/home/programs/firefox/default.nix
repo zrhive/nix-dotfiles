@@ -5,7 +5,6 @@
   ...
 }:
 {
-  # home.file.".mozilla/firefox/profile2/chrome/userChrome.css" = {
   home.file.".mozilla/firefox/profile2/chrome" = {
     source =
       let
@@ -72,7 +71,6 @@
                 ];
               }
             ];
-            # icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           };
 
           "Nix Options" = {
@@ -93,7 +91,6 @@
                 ];
               }
             ];
-            # icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           };
 
           "NixOS Wiki" = {
@@ -110,7 +107,6 @@
                 ];
               }
             ];
-            # icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           };
 
           "Home Manager" = {
@@ -131,7 +127,6 @@
                 ];
               }
             ];
-            # icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           };
 
           "Noogle" = {
@@ -148,7 +143,6 @@
                 ];
               }
             ];
-            # icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           };
         };
     };

@@ -26,7 +26,7 @@
     suckless.flake = false;
     dotfiles.url = "path:./dotfiles";
     dotfiles.flake = false;
-    secrets.url = "git@github.com:zhyie/nix-secrets.git";
+    secrets.url = "git+ssh://git@github.com/zhyie/nix-secrets.git?ref=main";
     secrets.flake = false;
   };
 

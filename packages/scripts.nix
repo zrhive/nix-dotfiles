@@ -3,13 +3,11 @@
   symlinkJoin,
   inputs,
 }:
-
 let
   inherit (builtins)
     attrNames
     readDir
     readFile
-    listToAttrs
     replaceStrings
     map
     ;
@@ -18,15 +16,9 @@ let
   scripts' = attrNames (readDir dir);
   scripts = map (s: replaceStrings [ ".sh" ] [ "" ] s) scripts';
   mkScript = name: writeScriptBin name (readFile (dir + "/${name}.sh"));
-  # drv = map (script: mkScript script) scripts;
+  drv = map (script: mkScript script) scripts;
 in
-listToAttrs (
-  map (name: {
-    inherit name;
-    value = mkScript name;
-  }) scripts
-)
-# symlinkJoin {
-#   name = "scripts";
-#   paths = drv;
-# }
+symlinkJoin {
+  name = "scripts";
+  paths = drv;
+}

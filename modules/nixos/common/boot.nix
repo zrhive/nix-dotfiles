@@ -6,9 +6,5 @@
       efi.canTouchEfiVariables = true;
     };
     kernelPackages = pkgs.linuxPackages_latest;
-
-    plymouth = {
-      enable = true;
-    };
   };
 }

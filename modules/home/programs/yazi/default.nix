@@ -2,8 +2,10 @@
 {
   programs.yazi = {
     enable = true;
-    package = pkgs.unstable.yazi;
+    package = pkgs.unstable.yazi.override { _7zz = pkgs._7zz-rar; };
     shellWrapperName = "y";
+    enableBashIntegration = true;
+    enableNushellIntegration = true;
     extraPackages = builtins.attrValues {
       inherit (pkgs)
         ueberzugpp

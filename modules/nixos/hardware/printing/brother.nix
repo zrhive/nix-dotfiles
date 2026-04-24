@@ -1,13 +1,9 @@
-# CONFIGURATIONS FOCUSES ON BROTHER PRINTERS
-# AS IT IS THE ONE BEING USED CURRENTLY
-
 { pkgs, ... }:
-let
 
+let
   ip = "192.168.1.13";
   printer = "Brother";
   model = "MFC-J200";
-
 in
 {
   # Enable CUPS to print documents.
