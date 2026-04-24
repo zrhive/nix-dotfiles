@@ -1,25 +1,61 @@
-{ self }@args:
-{
-  # mkHost =
-  #   host: cfg:
-  #   if lib.hasSuffix "linux" cfg.system then
-  #     import ./mkNixos.nix (
-  #       args
-  #       // {
-  #         inherit host cfg;
-  #       }
-  #     )
-  #   else
-  #     import ./host/mkDarwin.nix (
-  #       args
-  #       // {
-  #         inherit host cfg;
-  #       }
-  #     );
+{ self, ... }@args:
 
-  mkNixos = host: cfg: self.isLinux cfg.system (import ./mkNixos.nix { inherit host cfg; } // args);
-  mkDarwin =
-    host: spec: self.isDarwin spec.system (import ./mkDarwin.nix { inherit host spec; } // args);
+let
+  inherit (self)
+    isLinux
+    isDarwin
+    concatLists
+    mapAttrs
+    attrValues
+    map
+    ;
+in
+{
+  mkNixos = host: cfg: isLinux cfg.system (import ./mkNixos.nix (args // { inherit host cfg; }));
+  mkDarwin = host: cfg: isDarwin cfg.system (import ./mkNixos.nix (args // { inherit host cfg; }));
+
+  # mkHome =
+  #   attrs:
+  #   concatLists (
+  #     attrValues (
+  #       mapAttrs (
+  #         host: cfg:
+  #         map (user: {
+  #           name = user + "@" + host;
+  #           value = import ./mkHome.nix (args // { inherit host cfg; });
+  #         }) cfg.userList
+  #       ) attrs
+  #     )
+  #   );
+  mkHome =
+    attrs:
+    let
+      hostList = mapAttrs (
+        user: cfg:
+        map (host: {
+          name = host;
+          value = import ./mkHome (args // { inherit user cfg; });
+        }) cfg.hostList
+      ) attrs;
+    in
+    concatLists (attrValues hostList);
+
+  mkHost =
+    host: cfg:
+    if self.hasSuffix "linux" cfg.system then
+      import ./mkNixos.nix (
+        args
+        // {
+          inherit host cfg;
+        }
+      )
+    else
+      import ./host/mkDarwin.nix (
+        args
+        // {
+          inherit host cfg;
+        }
+      );
 
   /*
     nix-repl> builtins.concatLists ((builtins.attrValues (builtins.mapAttrs (h: c: builtins.map (u: u + "@" + h) c.users) { host1 = { users = [ "user1" ]; }; })))

@@ -1,21 +1,18 @@
 {
   inputs,
-  hosts,
   users,
   host,
   cfg,
   ...
-}: # @args:
-
+}:
 let
-  # inherit (args) inputs hosts users;
-  inherit (cfg) system userList;
-  inherit (inputs.nixpkgs.lib)
-    # genAttrs
-    # attrValues
-    # flatten
-    nixosSystem
+  inherit (cfg)
+    module
+    system
+    userList
+    profileList
     ;
+  inherit (inputs.nixpkgs.lib) nixosSystem;
   nixos = inputs.self.nixosModules;
   home = inputs.self.homeModules;
 
@@ -29,10 +26,14 @@ let
       ;
   };
 
-  # userModules = flatten (attrValues (genAttrs userList (user: [ users.${user}.default ])));
-  userModules = map (user: users.${user}.default) userList;
+  # hostProfiles = map (profile: nixos.profiles.${profile}) profileList;
+  hostProfiles = map (profile: nixos.profiles.${profile}) (
+    if profileList == null then [ "minimal" ] else [ "minimal" ] ++ profileList
+  );
+  userModule = map (user: users.${user}.default) userList;
   home-manager = [
-    (home.nixos {
+    inputs.home-manager.nixosModules.home-manager
+    (import ./mkHome/nixos.nix {
       inherit
         inputs
         users
@@ -40,8 +41,8 @@ let
         home
         ;
     })
-    inputs.home-manager.nixosModules.home-manager
   ];
-  modules = hosts.${host}.imports ++ userModules ++ home-manager;
+  modules = module ++ userModule ++ hostProfiles ++ home-manager;
+  # modules = module ++ userModule ++ home-manager;
 in
 nixosSystem { inherit system specialArgs modules; }

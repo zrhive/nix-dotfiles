@@ -1,8 +1,8 @@
 {
   inputs,
+  users,
   home,
   system,
-  users,
   userList,
   ...
 }:
@@ -15,10 +15,13 @@ let
     config.allowUnfree = true;
   };
 
-  extraSpecialArgs = { inherit inputs home; };
+  extraSpecialArgs = {
+    inherit (inputs) self;
+    inherit inputs home;
+  };
 
   userModules = genAttrs userList (user: [
-    (home.default { inherit user; })
+    (import ./home.nix { inherit user; })
     users.${user}.home
   ]);
   modules = flatten (attrValues userModules);
