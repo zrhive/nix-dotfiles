@@ -30,7 +30,9 @@
         lua-language-server
         stylua
         nixd
+        nixfmt
         nixfmt-tree
+        alejandra
         deadnix
         statix
         clang
