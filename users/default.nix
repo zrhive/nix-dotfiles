@@ -6,5 +6,6 @@
       "zhyie"
       "zhyie@elitenix"
     ];
+    profileList = [ "workstation" ];
   };
 }
