@@ -17,7 +17,6 @@ let
   home = inputs.self.homeModules;
 
   specialArgs = {
-    inherit (inputs) self;
     inherit
       inputs
       host

@@ -7,11 +7,7 @@
 }:
 let
   inherit (inputs.nixpkgs.lib) genAttrs;
-
-  extraSpecialArgs = {
-    inherit (inputs) self;
-    inherit inputs home;
-  };
+  extraSpecialArgs = { inherit inputs home; };
 in
 {
   home-manager = {
