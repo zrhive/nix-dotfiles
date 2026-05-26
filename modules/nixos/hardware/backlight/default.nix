@@ -1,0 +1,3 @@
+{
+  light = import ./light.nix;
+}

@@ -1,9 +1,13 @@
 {
   imports = [
+    ./common.nix
+
     ./nix.nix
-    ./nixpkgs.nix
     ./boot.nix
     ./networking.nix
     ./user.nix
+
+    ./earlyoom.nix
+    ./zram.nix
   ];
 }

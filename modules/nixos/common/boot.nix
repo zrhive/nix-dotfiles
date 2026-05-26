@@ -5,10 +5,7 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    kernelPackages = pkgs.linuxPackages_latest;
 
-    plymouth = {
-      enable = true;
-    };
+    kernelPackages = pkgs.linuxPackages_latest;
   };
 }

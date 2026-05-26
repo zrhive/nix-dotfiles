@@ -1,14 +1,21 @@
+{ pkgs, self }:
+
 let
-  pkgs = import (import ./.).nixpkgs {
-    system = builtins.currentSystem;
-  };
+  inherit (self.checks.${pkgs.stdenv.hostPlatform.system}.git-hooks)
+    shellHook
+    enabledPackages
+    ;
 in
 pkgs.mkShellNoCC {
-  packages = builtins.attrValues {
-    inherit (pkgs)
-      tree
-      nixfmt
-      nixfmt-tree
-      ;
-  };
+  inherit shellHook;
+  buildInputs = enabledPackages;
+
+  packages = [
+    pkgs.home-manager
+    pkgs.nh
+
+    pkgs.macchina
+    pkgs.bat
+    pkgs.statix
+  ];
 }

@@ -1,31 +1,49 @@
 { pkgs, ... }:
 {
-  # Enable backlight.
-  programs.light.enable = true;
-  # Enable gtk settings
-  programs.dconf.enable = true;
-
   environment.systemPackages = builtins.attrValues {
     # Nano editor is installed by default.
     inherit (pkgs)
       wget
       unzip
+      xclip
       ;
   };
 
-  # suckless software
-  suckless = {
-    dwm = true;
-    dmenu = true;
-    slstatus = true;
-    st = true;
+  modules = {
+    nixos = {
+      #: Backlight
+      light = {
+        minimum = 5;
+        keys = {
+          increase = 233;
+          decrease = 232;
+        };
+      };
+    };
+
+    graphical = {
+      # xserver.dwm = true;
+      xserver.enable = true;
+      wayland.enable = true;
+      wayland.niri = true;
+      display.manager = "ly";
+    };
+  };
+
+  services.xserver = {
+    serverFlagsSection = ''
+      Option "BlankTime" "0"
+      Option "StandbyTime" "10"
+      Option "SuspendTime" "20"
+      Option "OffTime" "30"
+    '';
   };
 
   time.timeZone = "Asia/Manila";
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocales = [ "tl_PH.UTF-8/UTF-8" ];
   console = {
-    font = "sun12x22";
-    keyMap = "us";
+    font = "ter-v20n";
+    packages = [ pkgs.terminus_font ];
   };
   #######################################
   #   OFF LIMIT  SYSTEM STATE VERSION   #

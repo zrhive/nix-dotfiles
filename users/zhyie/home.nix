@@ -1,32 +1,46 @@
-{ home, ... }:
+{ home, pkgs, ... }:
 {
-  home.file = {
-    ".gitconfig".source = ./.gitconfig;
+  imports = [
+    ./variables.nix
+    ./osConfig.nix
+
+    home.common
+    home.dev
+    home.themes
+
+    home.profiles.graphical
+    home.profiles.gaming
+  ];
+
+  modules = {
+    dev.enable = true;
+
+    flatpak = {
+      enable = true;
+      apps = {
+        libreoffice.enable = true;
+      };
+    };
   };
 
-  dotfiles.configFiles = [
-    "picom"
-    "kitty"
-    "rofi"
-    "yazi"
-    "btop"
-  ];
+  home.packages = builtins.attrValues {
+    inherit (pkgs.custom) scripts;
+    inherit (pkgs) discord;
+  };
 
-  # vars = {
-  #   flake = ".os";
-  #   user = {
-  #     name = "zhyie";
-  #     email = "zhyie";
-  #   };
-  # };
-
-  imports = [
-    home.programs.default
-    home.services.default
-    home.themes.default
-    home.dev
-    home.utils
-  ];
-  # home.packages = builtins.attrValues {
-  # };
+  dotfiles = {
+    configFiles = [
+      "nvim"
+      "picom"
+      "kitty"
+      "rofi"
+      "yazi"
+      "btop"
+      "nushell/config.nu"
+      "niri"
+    ];
+    homeFiles = [
+      ".nanorc"
+    ];
+  };
 }

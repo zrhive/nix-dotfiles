@@ -1,12 +1,19 @@
-{ inputs, ... }:
+{ inputs }:
 {
-  # Unstable nixpkgs
-  unstable-packages = final: prev: {
-    unstable = import inputs.nixpkgs-unstable {
-      system = final.system;
-      config.allowUnfree = true;
-    };
+  #: Nixpkgs
+  nix-packages = final: _: {
+    unstable = inputs.nixos-unstable.legacyPackages.${final.stdenv.hostPlatform.system};
+    stable = inputs.nixpkgs.legacyPackages.${final.stdenv.hostPlatform.system};
+    droid = inputs.nix-on-droid.overlays.default;
   };
 
-  # additions = final: _prev: import ../packages final.pkgs;
+  #: Custom built packages
+  custom-packages = final: _: {
+    custom = inputs.self.packages.${final.stdenv.hostPlatform.system};
+  };
+
+  modify-packages = _: prev: {
+    firefox = import ./firefox.nix { inherit inputs prev; };
+    openldap = prev.openldap.overrideAttrs { doCheck = false; };
+  };
 }

@@ -1,30 +1,51 @@
-{ ... }@args:
-
+{ inputs, ... }@args:
+/**
+  args = { inherit inputs hosts users modules; };
+*/
 let
-  inherit (args.inputs.nixpkgs) lib;
+  callLibs = f: import f (args // { inherit (inputs.self) lib'; });
 in
-{
-  mkHost =
-    host: cfg:
-    # if pkgs.stdenv.hostPlatform.isLinux then
-    if lib.hasSuffix "linux" cfg.system then
-      import ./mkNixos.nix (
-        args
-        // {
-          inherit host cfg;
-        }
-      )
-    else
-      import ./mkDarwin.nix (
-        args
-        // {
-          inherit host cfg;
-        }
-      );
+rec {
+  host = callLibs ./host;
+  platform = callLibs ./platform.nix;
 
-  # mkHome = host: cfg: let user = lib.attrsName (
-  #   lib.genAttrs cfg.userList (user: {}));
-  # in lib.nameValuePair ("${user}@${host}") (
-  #   import ./mkHome.nix (args // { inherit host cfg; })
-  # );
+  inherit (host)
+    callHost
+    mkHost
+
+    mkNixos
+    mkDarwin
+    mkDroid
+    mkHome
+
+    homeModule
+    homeDefault
+    ;
+  inherit (platform)
+    isPlatform
+    isPlatformElse
+
+    isNixosPlatform
+    isDarwinPlatform
+    isWslPlatform
+    isDroidPlatform
+
+    genNixos
+    genDarwin
+    genWsl
+    genDroid
+
+    filterNixos
+    filterDarwin
+    filterWsl
+    filterDroid
+
+    isLinux
+    isDarwin
+    forLinux
+    forDarwin
+
+    systemList
+    eachSystem
+    ;
 }

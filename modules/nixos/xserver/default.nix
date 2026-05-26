@@ -1,8 +1,7 @@
 {
-  imports = [
-    ./xautolock.nix
-    ./xscreensaver.nix
-  ];
+  default = import ./xserver.nix;
+  xautolock = import ./xautolock.nix;
+  xscreensaver = import ./xscreensaver.nix;
 
-  suckless = import ./suckless;
+  dwm = import ./dwm.nix;
 }

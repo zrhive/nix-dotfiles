@@ -2,6 +2,15 @@
   zhyie = {
     default = import ./zhyie;
     home = import ./zhyie/home.nix;
-    hostList = [ "zhyie@elitenix" ];
+    profiles = [
+      "dev"
+      "gaming"
+    ];
+  };
+
+  cherry = {
+    default = import ./cherry;
+    home = import ./cherry/home.nix;
+    profileList = [ "dev" ];
   };
 }
