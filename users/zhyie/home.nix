@@ -2,7 +2,6 @@
 {
   imports = [
     ./variables.nix
-    ./osConfig.nix
 
     home.common
     home.dev
