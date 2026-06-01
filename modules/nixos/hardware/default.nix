@@ -8,7 +8,7 @@ rec {
 
   #: Backlight
   backlight = ./backlight;
-  inherit (backlight) light;
+  inherit (backlight) brightnessctl light;
 
   #: Input
   input = ./input;

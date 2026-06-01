@@ -7,9 +7,9 @@
     package = pkgs.brightnessctl;
 
     flags = {
-      minimum = "-n";
-      increase = "-s";
-      decrease = "-s";
+      minimum = "--min-value";
+      increase = "set";
+      decrease = "set";
     };
   };
 }

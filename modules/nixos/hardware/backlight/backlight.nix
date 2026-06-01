@@ -85,14 +85,14 @@
             {
               keys = [ cfg.keycodes.decrease ];
               events = [ "key" ];
-              command = "${cmd} ${flagMin} ${minimum} && ${cmd} ${flagDec} ${step}-";
+              command = "${cmd} ${flagMin} ${minimum} && ${cmd} ${flagDec} ${step}%-";
             }
 
             #: Increase screen brightness
             {
               keys = [ cfg.keycodes.increase ];
               events = [ "key" ];
-              command = "${cmd} ${flagInc} +${step}";
+              command = "${cmd} ${flagInc} ${step}%+";
             }
           ];
       };
