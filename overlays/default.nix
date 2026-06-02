@@ -3,7 +3,7 @@
   #: Nixpkgs
   nix-packages = final: _: {
     unstable = inputs.nixos-unstable.legacyPackages.${final.stdenv.hostPlatform.system};
-    stable = inputs.nixpkgs.legacyPackages.${final.stdenv.hostPlatform.system};
+    stable = inputs.nixos-stable.legacyPackages.${final.stdenv.hostPlatform.system};
     droid = inputs.nix-on-droid.overlays.default;
   };
 
