@@ -21,10 +21,9 @@
   };
 
   #: noctalia-shell
-  # services.noctalia-shell = {
-  #   enable = true;
-  #   # package = pkgs.noctalia-shell;
-  # };
+  services.noctalia-shell = {
+    enable = true;
+  };
 
   #: xwayland support
   environment.systemPackages = [ pkgs.xwayland-satellite ];
