@@ -1,4 +1,4 @@
 rec {
-  catppuccin = ./catppuccin;
-  inherit (catppuccin) default console nmtui;
+  catppuccin = import ./catppuccin;
+  inherit (catppuccin) console nmtui;
 }
