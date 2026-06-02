@@ -10,15 +10,10 @@
   };
 
   modules = {
-    nixos = {
-      #: Backlight
-      light = {
-        minimum = 5;
-        keys = {
-          increase = 233;
-          decrease = 232;
-        };
-      };
+    #: Backlight
+    backlight.keycodes = {
+      increase = 233;
+      decrease = 232;
     };
 
     graphical = {
@@ -28,6 +23,13 @@
       wayland.niri = true;
       display.manager = "ly";
     };
+  };
+
+  suckless = {
+    dwm.enable = true;
+    dmenu.enable = true;
+    st.enable = true;
+    slstatus.enable = true;
   };
 
   services.xserver = {
