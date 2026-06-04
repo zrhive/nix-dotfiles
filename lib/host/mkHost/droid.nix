@@ -1,25 +1,26 @@
 {
-  lib',
   inputs,
-  lib,
   users,
   modules,
   hostName,
   hostConfig,
+  homeModule,
   ...
 }@args:
 
 let
   userName = builtins.head hostConfig.users;
-  userModule = lib.toList users.${userName}.default;
-  homeModule = lib'.homeModule (args // { inherit userName; });
+  userModule = [ users.${userName}.default ];
+
+  homeModules = homeModule (args // { inherit userName; });
 
   baseModules = hostConfig.module ++ userModule;
 in
-lib.nixOnDroidConfiguration {
+inputs.nixpkgs.lib.nixOnDroidConfiguration {
   pkgs = inputs.nixpkgs-droid.legacyPackages.${hostConfig.system};
   home-manager-path = inputs.home-manager-droid.outPath;
-  modules = if hostConfig.withHome then baseModules ++ homeModule else baseModules;
+
+  modules = if hostConfig.withHome then baseModules ++ homeModules else baseModules;
 
   extraSpecialArgs = {
     inherit (modules) droid;
@@ -27,7 +28,6 @@ lib.nixOnDroidConfiguration {
       inputs
       hostName
       hostConfig
-      lib'
       ;
   };
 }

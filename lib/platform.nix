@@ -1,19 +1,24 @@
-{
-  lib,
-  inputs,
-  hosts,
-  ...
-}:
+{ inputs, hosts, ... }:
 
+let
+  inherit (inputs.nixpkgs.lib)
+    attrValues
+    mapAttrs
+    genAttrs
+    filterAttrs
+    hasSuffix
+    unique
+    ;
+in
 rec {
-  filterNixos = attrs: lib.filterAttrs (_: c: c.platform == "nixos") attrs;
-  filterDarwin = attrs: lib.filterAttrs (_: c: c.platform == "darwin") attrs;
-  filterWsl = attrs: lib.filterAttrs (_: c: c.platform == "wsl") attrs;
-  filterDroid = attrs: lib.filterAttrs (_: c: c.platform == "droid") attrs;
+  filterNixos = attrs: filterAttrs (_: c: c.platform == "nixos") attrs;
+  filterDarwin = attrs: filterAttrs (_: c: c.platform == "darwin") attrs;
+  filterWsl = attrs: filterAttrs (_: c: c.platform == "wsl") attrs;
+  filterDroid = attrs: filterAttrs (_: c: c.platform == "droid") attrs;
 
-  isLinux = platform: lib.hasSuffix "linux" platform;
-  isDarwin = platform: lib.hasSuffix "darwin" platform;
+  isLinux = platform: hasSuffix "linux" platform;
+  isDarwin = platform: hasSuffix "darwin" platform;
 
-  systemList = lib.unique (lib.attrValues (lib.mapAttrs (_: host: host.system) hosts));
-  eachSystem = f: lib.genAttrs systemList (system: f inputs.nixpkgs.legacyPackages.${system});
+  systemList = unique (attrValues (mapAttrs (_: host: host.system) hosts));
+  eachSystem = f: genAttrs systemList (system: f inputs.nixpkgs.legacyPackages.${system});
 }

@@ -1,5 +1,4 @@
 {
-  lib,
   inputs,
   users,
   modules,
@@ -13,7 +12,7 @@ let
   userConfig = users.${userName};
   homeDefault = import ./home.nix { inherit hostConfig userName; };
 in
-lib.homeManagerConfiguration {
+inputs.home-manager.lib.homeManagerConfiguration {
   pkgs = inputs.nixpkgs.legacyPackages.${hostConfig.system};
 
   extraSpecialArgs = {

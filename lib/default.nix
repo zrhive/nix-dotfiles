@@ -1,13 +1,8 @@
-{ inputs, ... }@args:
-/**
-  args = { inherit inputs hosts users modules; };
-*/
-let
-  callLibs = f: import f (args // { inherit (inputs.self) lib'; });
-in
+{ ... }@args:
+
 rec {
-  host = callLibs ./host;
-  platform = callLibs ./platform.nix;
+  host = import ./host args;
+  platform = import ./platform.nix args;
 
   inherit (host)
     callHost
