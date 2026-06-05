@@ -534,11 +534,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780423900,
-        "narHash": "sha256-wUq1Vc5bYrFk7aTC1j4zj22Jr+ROgIxoWc2nFxCluc4=",
+        "lastModified": 1780504348,
+        "narHash": "sha256-kPMfdmdPjT1Vf+mGizjXP5cIXYGfFl499o7UZydV6Gs=",
         "owner": "zrhive",
         "repo": "suckless",
-        "rev": "852d578cfe6938822c03667e914132fe7661fbd0",
+        "rev": "a63949d104e7eb1ff8bef9820417c1506402ee0f",
         "type": "github"
       },
       "original": {

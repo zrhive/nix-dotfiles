@@ -5,7 +5,7 @@
   inputs,
   nixos,
   ...
-}:
+}@arg:
 
 let
   inherit (lib)
@@ -16,15 +16,7 @@ let
     mkIf
     ;
 
-  args = {
-    inherit
-      config
-      lib
-      pkgs
-      inputs
-      nixos
-      ;
-  };
+  args = arg;
   cfg = config.modules.graphical;
   isEnable = attr: lib.any (c: c) (lib.attrValues attr);
 in

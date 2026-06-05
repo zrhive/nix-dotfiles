@@ -1,4 +1,4 @@
+{ lib }:
 {
-  common = import ./common;
-  profiles = import ./profiles;
+  imports = lib.filesystem.listFilesRecursive ./.;
 }

@@ -1,30 +1,11 @@
 { config, lib, ... }:
 
 let
-  inherit (lib)
-    mkEnableOption
-    mkOption
-    types
-    optionals
-    concatMap
-    attrValues
-    mkDefault
-    any
-    ;
+  inherit (lib) mkEnableOption mkOption types;
 in
 {
   options.modules.gaming = {
     enable = mkEnableOption "Enable gaming modules.";
-    flatpak = mkEnableOption "Use flatpak.";
-
-    env = mkOption {
-      type = types.enum [
-        "home"
-        "nixos"
-      ];
-      default = "nixos";
-      description = "Environment the packages will install to.";
-    };
 
     #: Placeholders for the list of packages to install.
     packages = {
@@ -69,28 +50,15 @@ in
     };
   };
 
-  config =
-    let
-      cfg = config.modules.gaming;
-
-      installPkgs =
-        version:
-        concatMap (game: optionals (game.enable && game.version == version) game.packages) (
-          attrValues cfg.games
-        );
-
-      # gameConfig = attrValues cfg.games;
-      # checkFlatpak = c: c.enable && c.version == "flatpak";
-      checkFlatpak = any (game: game.enable && game.version == "flatpak") (
-        attrValues config.modules.gaming.games
+  config = {
+    service.flatpak = {
+      enable = lib.mkDefault lib.any (game: game.enable && game.version == "flatpak") (
+        lib.attrValues config.modules.gaming.games
       );
-    in
-    {
-      modules.gaming.flatpak = mkDefault checkFlatpak;
-      modules.gaming.packages.nixpkgs = installPkgs "nixpkgs";
-      modules.gaming.packages.flatpaks = installPkgs "flatpak";
 
-      modules.flatpak.enable = mkDefault cfg.flatpak;
-      services.flatpak.packages = cfg.packages.flatpaks;
+      packages = lib.concatMap (
+        game: lib.optionals (game.enable && game.version == "flatpak") game.packages
+      ) (lib.attrValues config.modules.gaming.games);
     };
+  };
 }

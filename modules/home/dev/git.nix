@@ -3,7 +3,7 @@
   programs.git = {
     # enable = config.modules.dev.enable;
     enable = true;
-    package = if config.modules.dev.enable then pkgs.git else pkgs.gitMinimal;
+    package = pkgs.gitMinimal;
 
     settings = {
       user = {

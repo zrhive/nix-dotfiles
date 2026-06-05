@@ -4,7 +4,7 @@
 
   programs.neovim = {
     enable = config.modules.dev.enable;
-    package = pkgs.unstable.neovim-unwrapped;
+    package = pkgs.neovim-unwrapped;
     defaultEditor = true;
     viAlias = true;
     withNodeJs = true;
@@ -17,16 +17,8 @@
         ripgrep
         fzf
         xclip
-        git
+        gitMinimal
         tree-sitter
-        # lua-language-server
-        # stylua
-        # clang
-        # clang-tools
-        # nixd
-        nixfmt
-        # deadnix
-        # statix
         ;
     };
 

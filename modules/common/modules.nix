@@ -6,8 +6,8 @@ let
     mkOption
     types
     genAttrs
+    literalExpression
     ;
-  inherit (types) lines;
 
   moduleList = [
     "desktop"
@@ -26,22 +26,37 @@ in
 {
   options.modules = genAttrs moduleList mkEnable // {
     shell.beforeExec = mkOption {
-      type = lines;
+      type = types.lines;
       default = "";
       description = "Commands to run before an exec of shell.";
     };
   };
 
-  # options.modules = lib.mkOption {
-  #   type = lib.types.attrsOf (
-  #     lib.types.submodule (
-  #       { name, ... }:
-  #       {
-  #         enable = mkEnableOption "Enable ${name} modules.";
-  #       }
-  #     )
-  #   );
-  #   default = { };
-  #   description = "Modules options.";
-  # };
+  options.listModules = mkOption {
+    type = types.listOf types.str;
+    default = [ ];
+    example = literalExpression ''
+      listModules = [
+        "bash"
+        "neovim"
+      ];
+    '';
+    description = ''
+      List of pre-configured modules to enable.
+    '';
+  };
+
+  options.enableModules = mkOption {
+    type = types.attrsOf types.bool;
+    default = { };
+    example = literalExpression ''
+      enableModules = {
+        bash = true;
+        neovim = true;
+      };
+    '';
+    description = ''
+      Attr of pre-configured modules to enable.
+    '';
+  };
 }

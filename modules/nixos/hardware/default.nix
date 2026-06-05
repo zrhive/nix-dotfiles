@@ -1,22 +1,22 @@
 rec {
   #: Audio
-  audio = ./audio;
+  audio = import ./audio;
   inherit (audio) pipewire;
 
   #: Bluetooth
   bluetooth = ./bluetooth;
 
   #: Backlight
-  backlight = ./backlight;
+  backlight = import ./backlight;
   inherit (backlight) brightnessctl light;
 
   #: Input
-  input = ./input;
+  input = import ./input;
   inherit (input) mouse touchpad trackpoint;
 
   #: Power
   power = ./power;
 
   #: Printing
-  printing = ./printing;
+  printing = import ./printing;
 }

@@ -5,7 +5,7 @@
   modules.gaming.games =
     let
       inherit (lib) mkDefault;
-      inherit (pkgs.unstable)
+      inherit (pkgs)
         protonup-qt
         heroic
         faugus-launcher

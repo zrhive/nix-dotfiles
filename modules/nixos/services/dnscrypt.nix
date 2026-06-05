@@ -7,7 +7,7 @@ let
 in
 {
   services.dnscrypt-proxy = {
-    enable = true;
+    # enable = true;
 
     # See https://github.com/DNSCrypt/dnscrypt-proxy/blob/master/dnscrypt-proxy/example-dnscrypt-proxy.toml
     settings = {

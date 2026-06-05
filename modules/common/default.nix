@@ -1,6 +1,10 @@
 {
-  modules = import ./modules.nix;
-  variables = import ./variables.nix;
-  gaming = import ./gaming;
-  flatpak = import ./flatpak;
+  imports = [
+    ./modlib.nix
+    ./modules.nix
+    ./variables.nix
+
+    ./flatpak
+    ./gaming
+  ];
 }

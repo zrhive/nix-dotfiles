@@ -13,7 +13,9 @@ pkgs.mkShellNoCC {
     self.packages.${pkgs.stdenv.hostPlatform.system}.hm
     pkgs.lua54Packages.luacheck
     pkgs.nixd
+    pkgs.taplo
 
     pkgs.bat
+    pkgs.gitui
   ];
 }

@@ -1,4 +1,9 @@
-{ nixos, hostConfig, ... }:
+{
+  config,
+  nixos,
+  hostConfig,
+  ...
+}:
 {
   imports = [ nixos.security.fail2ban ];
 
@@ -13,7 +18,7 @@
     };
   };
 
-  programs.ssh.startAgent = true;
+  programs.ssh.startAgent = config.services.openssh.enable;
   /**
     FIXME: Niri modules enabled `services.gnome.gnome-keyring`
     which enabled `services.gnome.gcr-ssh-agent.enable'

@@ -9,7 +9,7 @@
   };
 
   inputs = {
-    self.submodules = true;
+    # self.submodules = true;
 
     #: NIXOS AND NIXPKGS ----------------------------------------
     nixpkgs.follows = "nixos-stable";
@@ -84,8 +84,7 @@
   outputs =
     { self, ... }@inputs:
     let
-      lib = inputs.nixpkgs.lib // inputs.home-manager.lib // inputs.nix-on-droid.lib;
-      inherit (lib) mapAttrs listToAttrs;
+      inherit (inputs.nixpkgs.lib) mapAttrs listToAttrs;
 
       #: HOSTS AND THEIR SPECIFICATIONS
       hosts = import ./hosts;
@@ -95,101 +94,46 @@
       args = {
         inherit
           inputs
-          lib
           hosts
           users
+          modules
           ;
       };
-
-      #: Function library
-      lib' = import ./lib args;
-      inherit (lib')
-        eachSystem
-        mkHost
-        mkDroid
-        mkHome
-        filterNixos
-        filterDroid
-        ;
+      #: FUNCTION LIBRARY
+      lib = import ./lib args;
     in
     {
-      inherit lib' modules;
+      inherit lib;
 
       #: GENERATE HOSTS|HOMES CONFIGURATION
-      nixosConfigurations = mapAttrs mkHost (filterNixos hosts);
-      nixOnDroidConfigurations = mapAttrs mkDroid (filterDroid hosts);
-      # darwinConfigurations = mapAttrs mkDarwin hosts;
-      homeConfigurations = listToAttrs (mkHome hosts);
+      nixosConfigurations = mapAttrs lib.mkHost (lib.filterNixos hosts);
+      nixOnDroidConfigurations = mapAttrs lib.mkDroid (lib.filterDroid hosts);
+      # darwinConfigurations = mapAttrs mkDarwin (filterDarwin hosts);
+      homeConfigurations = listToAttrs (lib.mkHome hosts);
 
       #: EXPORT MODULES
-      nixosModules = modules.nixos;
-      homeModules = modules.home;
+      nixosModules = import ./modules/nixos;
+      homeModules = import ./modules/home;
 
       #: PACKAGES AND OVERLAYS
       overlays = import ./overlays { inherit inputs; };
-      packages = eachSystem (pkgs: import ./packages { inherit pkgs inputs; });
+      packages = lib.eachSystem (pkgs: import ./packages { inherit pkgs inputs; });
 
       #: FORMATTER
-      formatter = eachSystem (pkgs: self.packages.${pkgs.stdenv.hostPlatform.system}.git-hooks);
+      formatter = lib.eachSystem (pkgs: self.packages.${pkgs.stdenv.hostPlatform.system}.git-hooks);
+
+      #: SHELL ENVIRONMENT
+      devShells = lib.eachSystem (pkgs: {
+        default = import ./shell.nix { inherit self pkgs; };
+      });
 
       #: CHECKS
-      checks = eachSystem (
+      checks = lib.eachSystem (
         pkgs:
         mapAttrs (h: _: self.nixosConfigurations.${h}.config.system.build.toplevel) self.nixosConfigurations
         // mapAttrs (h: _: self.homeConfigurations.${h}.activationPackage) self.homeConfigurations
         // {
-          git-hooks = inputs.git-hooks.lib.${pkgs.stdenv.hostPlatform.system}.run {
-            src = ./.;
-            package = pkgs.prek;
-            excludes = [
-              "^hosts/.*/hardware-configuration.nix$"
-              "^dotfiles/.*"
-              "^secrets/.*"
-            ];
-            hooks = {
-              nixfmt.enable = true;
-              deadnix = {
-                enable = true;
-                settings = {
-                  edit = true;
-                  noLambdaPatternNames = true;
-                };
-              };
-              statix = {
-                enable = true;
-                entry = "${pkgs.statix}/bin/statix fix -c ${pkgs.writeText "statix.toml" ''
-                  disabled = [
-                    "manual_inherit_from",
-                    "empty_pattern",
-                    "redundant_pattern_bind",
-                    "repeated_keys",
-                  ]
-                ''}";
-              };
-            };
-          };
-        }
-      );
-
-      #: SHELL ENVIRONMENT
-      devShell = eachSystem (
-        pkgs:
-        let
-          inherit (self.checks.${pkgs.stdenv.hostPlatform.system}.git-hooks)
-            shellHook
-            enabledPackages
-            ;
-        in
-        pkgs.mkShellNoCC {
-          inherit shellHook;
-
-          packages = enabledPackages ++ [
-            inputs.home-manager-master.packages.${pkgs.stdenv.hostPlatform.system}.default
-
-            pkgs.macchina
-            pkgs.bat
-            pkgs.brightnessctl
-          ];
+          git-hooks = import ./hooks.nix { inherit inputs pkgs; };
         }
       );
     };

@@ -7,7 +7,7 @@
 {
   programs.yazi = {
     enable = true;
-    package = pkgs.unstable.yazi.override { _7zz = pkgs._7zz-rar; };
+    package = pkgs.yazi.override { _7zz = pkgs._7zz-rar; };
     shellWrapperName = "y";
     enableBashIntegration = config.programs.bash.enable;
     enableNushellIntegration = config.programs.nushell.enable;
@@ -16,8 +16,6 @@
         inherit (pkgs)
           ueberzugpp
           glow
-          ouch
-          lazygit
           mediainfo
           trash-cli
           ;

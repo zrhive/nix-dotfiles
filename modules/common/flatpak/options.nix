@@ -6,8 +6,6 @@
 }:
 {
   options.modules.flatpak = {
-    enable = lib.mkEnableOption "Enable flatpak modules.";
-
     packages = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = [ ];
@@ -69,38 +67,25 @@
   /**
     IMPLEMENTATION
   */
-  config =
-    lib.mkIf
-      (
-        config.modules.flatpak.enable
-        || config.modules.flatpak.appList != [ ]
-        || lib.any (app: app.enable) (lib.attrValues config.modules.flatpak.apps)
-      )
-      {
-        #: Compile flatpak packages
-        modules.flatpak.packages = lib.concatMap (app: lib.optional app.enable app.id) (
-          lib.attrValues config.modules.flatpak.apps
-        );
+  config = {
+    #: FLATPAK
+    services.flatpak = {
+      update.onActivation = true;
 
-        #: FLATPAK
-        services.flatpak = {
-          enable = true;
-          remotes = [
-            {
-              name = "flathub";
-              location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
-            }
-          ];
-          update.onActivation = true;
+      enable =
+        lib.any (app: app.enable) (lib.attrValues config.modules.flatpak.apps)
+        || config.modules.flatpak.appList != [ ];
 
-          packages = config.modules.flatpak.packages;
-        };
+      packages = lib.concatMap (app: lib.optional app.enable app.id) (
+        lib.attrValues config.modules.flatpak.apps
+      );
+    };
 
-        #: portal frontend service for Flatpak
-        xdg.portal = {
-          enable = true;
-          extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-          config.common.default = "*";
-        };
-      };
+    #: portal frontend service for Flatpak
+    xdg.portal = {
+      enable = lib.mkDefault config.services.flatpak.enable;
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      config.common.default = "*";
+    };
+  };
 }
