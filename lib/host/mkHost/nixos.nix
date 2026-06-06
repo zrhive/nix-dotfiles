@@ -12,8 +12,14 @@ let
   homeModules = map (userName: homeModule (args // { inherit userName; })) hostConfig.users;
   homeManager = [ inputs.home-manager.nixosModules.home-manager ] ++ homeModules;
 
-  userModule = map (user: users.${user}.default) hostConfig.users;
-  baseModules = hostConfig.module ++ userModule ++ [ modules.common ];
+  userModule = map (userName: users.${userName}.user) hostConfig.users;
+  baseModules =
+    hostConfig.module
+    ++ userModule
+    ++ [
+      modules.common
+      modules.nixos.profiles.base
+    ];
 in
 inputs.nixpkgs.lib.nixosSystem {
   inherit (hostConfig) system;
