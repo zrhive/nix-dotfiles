@@ -203,7 +203,10 @@
           "nix-on-droid",
           "nixpkgs"
         ],
-        "nmd": "nmd",
+        "nmd": [
+          "nix-on-droid",
+          "nmd"
+        ],
         "nmt": "nmt"
       },
       "locked": {
@@ -231,7 +234,7 @@
         ],
         "nixpkgs-docs": "nixpkgs-docs",
         "nixpkgs-for-bootstrap": "nixpkgs-for-bootstrap",
-        "nmd": "nmd_2"
+        "nmd": "nmd"
       },
       "locked": {
         "lastModified": 1720396533,
@@ -345,22 +348,6 @@
       }
     },
     "nmd": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1666190571,
-        "narHash": "sha256-Z1hc7M9X6L+H83o9vOprijpzhTfOBjd0KmUTnpHAVjA=",
-        "owner": "rycee",
-        "repo": "nmd",
-        "rev": "b75d312b4f33bd3294cd8ae5c2ca8c6da2afc169",
-        "type": "gitlab"
-      },
-      "original": {
-        "owner": "rycee",
-        "repo": "nmd",
-        "type": "gitlab"
-      }
-    },
-    "nmd_2": {
       "inputs": {
         "nixpkgs": [
           "nix-on-droid",
@@ -426,7 +413,10 @@
           "nixpkgs"
         ],
         "systems": "systems",
-        "treefmt-nix": "treefmt-nix_2"
+        "treefmt-nix": [
+          "direnv-instant",
+          "treefmt-nix"
+        ]
       },
       "locked": {
         "lastModified": 1780194487,
@@ -567,28 +557,6 @@
       "inputs": {
         "nixpkgs": [
           "direnv-instant",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1775636079,
-        "narHash": "sha256-pc20NRoMdiar8oPQceQT47UUZMBTiMdUuWrYu2obUP0=",
-        "owner": "numtide",
-        "repo": "treefmt-nix",
-        "rev": "790751ff7fd3801feeaf96d7dc416a8d581265ba",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "treefmt-nix",
-        "type": "github"
-      }
-    },
-    "treefmt-nix_2": {
-      "inputs": {
-        "nixpkgs": [
-          "noctalia",
-          "noctalia-qs",
           "nixpkgs"
         ]
       },

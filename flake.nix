@@ -20,6 +20,7 @@
       url = "github:nix-community/nix-on-droid/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs-droid";
       inputs.home-manager.follows = "home-manager-droid";
+      inputs.nix-formatter-pack.inputs.nmd.follows = "nix-on-droid/nmd";
     };
 
     #: HOME MANAGER ---------------------------------------------
@@ -60,6 +61,7 @@
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixos-unstable";
+      inputs.noctalia-qs.inputs.treefmt-nix.follows = "direnv-instant/treefmt-nix";
     };
     catppuccin = {
       url = "github:catppuccin/nix/release-26.05";
@@ -90,6 +92,7 @@
       hosts = import ./hosts;
       users = import ./users;
       modules = import ./modules;
+
       #: SET OF ARGS TO PASS IN
       args = {
         inherit
@@ -99,16 +102,15 @@
           modules
           ;
       };
+    in
+    rec {
       #: FUNCTION LIBRARY
       lib = import ./lib args;
-    in
-    {
-      inherit lib;
 
       #: GENERATE HOSTS|HOMES CONFIGURATION
-      nixosConfigurations = mapAttrs lib.mkHost (lib.filterNixos hosts);
+      nixosConfigurations = mapAttrs lib.mkNixos (lib.filterNixos hosts);
       nixOnDroidConfigurations = mapAttrs lib.mkDroid (lib.filterDroid hosts);
-      # darwinConfigurations = mapAttrs mkDarwin (filterDarwin hosts);
+      # darwinConfigurations = mapAttrs lib.mkDarwin (lib.filterDarwin hosts);
       homeConfigurations = listToAttrs (lib.mkHome hosts);
 
       #: EXPORT MODULES
@@ -120,7 +122,7 @@
       packages = lib.eachSystem (pkgs: import ./packages { inherit pkgs inputs; });
 
       #: FORMATTER
-      formatter = lib.eachSystem (pkgs: self.packages.${pkgs.stdenv.hostPlatform.system}.git-hooks);
+      formatter = lib.eachSystem (pkgs: packages.${pkgs.stdenv.hostPlatform.system}.git-hooks);
 
       #: SHELL ENVIRONMENT
       devShells = lib.eachSystem (pkgs: {
@@ -130,8 +132,8 @@
       #: CHECKS
       checks = lib.eachSystem (
         pkgs:
-        mapAttrs (h: _: self.nixosConfigurations.${h}.config.system.build.toplevel) self.nixosConfigurations
-        // mapAttrs (h: _: self.homeConfigurations.${h}.activationPackage) self.homeConfigurations
+        mapAttrs (h: _: nixosConfigurations.${h}.config.system.build.toplevel) nixosConfigurations
+        // mapAttrs (h: _: homeConfigurations.${h}.activationPackage) homeConfigurations
         // {
           git-hooks = import ./hooks.nix { inherit inputs pkgs; };
         }
