@@ -1,7 +1,14 @@
-{ hostConfig, ... }:
+{ hostConfig, pkgs, ... }:
 {
   #: Packages to install to path.
-  environment.packages = [ ];
+  environment = {
+    packages = [ pkgs.neovim ];
+
+    sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
+  };
 
   #######################################
   #   OFF LIMIT  SYSTEM STATE VERSION   #
@@ -10,9 +17,7 @@
   #: it would make to a configuration have
   #: been manually inspected and the data
   #: is migrated accordingly.
-  system = {
-    inherit (hostConfig) stateVersion;
-  };
+  system.stateVersion = hostConfig.stateVersion;
   #: Read the changelog accordingly:
   #: https://github.com/nix-community/nix-on-droid
 }

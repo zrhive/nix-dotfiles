@@ -10,7 +10,7 @@
 
 let
   userName = builtins.head hostConfig.users;
-  userModule = [ users.${userName}.default ];
+  userModule = [ users.${userName}.user ];
 
   homeModules = homeModule (args // { inherit userName; });
 

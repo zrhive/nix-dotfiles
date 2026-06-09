@@ -10,7 +10,7 @@
     (inputs.nixos-hardware + "/common/gpu/intel/whiskey-lake")
 
     #: DWM + suckless tools
-    # inputs.suckless.nixosModules.default
+    inputs.suckless.nixosModules.flexipatch
 
     #: Pre-configured modules
     nixos.profiles.laptop
@@ -18,5 +18,9 @@
     nixos.profiles.gaming
     nixos.themes.console
     nixos.themes.nmtui
+
+    #: Printers
+    nixos.hardware.printing.brother
+    nixos.hardware.printing.epson
   ];
 }

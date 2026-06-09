@@ -1,4 +1,7 @@
-{ ... }:
+{ droid, ... }:
 {
-  imports = [ ./configuration.nix ];
+  imports = [
+    ./configuration.nix
+    droid.profiles.base
+  ];
 }

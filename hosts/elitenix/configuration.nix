@@ -20,29 +20,18 @@
     gaming.enable = true;
 
     graphical = {
+      xserver.dwm = true;
       wayland.niri = true;
       display.manager = "ly";
     };
   };
 
-  # suckless = {
-  #   dwm = {
-  #     enable = true;
-  #     package = pkgs.dwm;
-  #   };
-  #   dmenu = {
-  #     enable = true;
-  #     package = pkgs.dmenu;
-  #   };
-  #   st = {
-  #     enable = true;
-  #     package = pkgs.st;
-  #   };
-  #   slstatus = {
-  #     enable = true;
-  #     package = pkgs.slstatus;
-  #   };
-  # };
+  suckless.tools = {
+    dwm.enable = true;
+    dmenu.enable = true;
+    st.enable = true;
+    slstatus.enable = true;
+  };
 
   services.xserver = {
     serverFlagsSection = ''
