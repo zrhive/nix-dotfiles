@@ -10,7 +10,7 @@
 
       bigclock = "en";
       bigclock_seconds = true;
-      clock = "%A, %B %d %Y";
+      clock = "%A %B %d %Y";
       show_tty = true;
 
       auth_fails = 5;
