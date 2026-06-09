@@ -10,6 +10,7 @@
 
 let
   userName = builtins.head hostConfig.users;
+
   userModule = [ users.${userName}.user ];
   baseModules = hostConfig.module ++ userModule;
 
@@ -18,21 +19,16 @@ in
 inputs.nix-on-droid.lib.nixOnDroidConfiguration {
   modules = if hostConfig.withHome then baseModules ++ homeModules else baseModules;
 
-  pkgs = inputs.nixpkgs-droid.legacyPackages.${hostConfig.system};
-  # pkgs = import inputs.nixpkgs-droid {
-  #   inherit (hostConfig) system;
-  #   overlays = builtins.attrValues inputs.self.overlays ++ [
-  #     inputs.nix-on-droid.overlays.default
-  #   ];
-  # };
+  pkgs = import inputs.nixpkgs-droid {
+    inherit (hostConfig) system;
+    overlays = builtins.attrValues inputs.self.overlays ++ [
+      inputs.nix-on-droid.overlays.default
+    ];
+  };
 
   extraSpecialArgs = {
     inherit (modules) droid;
-    inherit
-      inputs
-      hostName
-      hostConfig
-      ;
+    inherit inputs hostName hostConfig;
   };
 }
 // (inputs.nixpkgs.lib.optionalAttrs hostConfig.withHome {

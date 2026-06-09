@@ -27,13 +27,4 @@ in
     substituters = [ "https://nix-community.cachix.org" ];
     trustedPublicKeys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
   };
-
-  #: Nixpkgs configuraiton.
-  nixpkgs = {
-    #: Allow unfree packages.
-    config.allowUnfree = true;
-
-    #: Overlays to apply to Nixpkgs.
-    overlays = lib.attrValues inputs.self.overlays ++ [ inputs.nix-on-droid.overlays.default ];
-  };
 }
