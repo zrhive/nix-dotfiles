@@ -432,18 +432,18 @@
         ]
       },
       "locked": {
-        "lastModified": 1780939512,
-        "narHash": "sha256-rsNYvo4HD0yOpGx1nI55yHMSqO3a9Vl2UkQ49BdTwJ0=",
+        "lastModified": 1781107083,
+        "narHash": "sha256-SA4dg6OUvU6HOg2xd9y4bJMgfSdQRCtWMxWNuchvicg=",
         "owner": "zrhive",
         "repo": "suckless",
-        "rev": "d51eda163e15706ab6aa9ea8ed357f6eafa3889c",
-        "type": "github"
+        "rev": "f63f702c046ad50b37750c5ff7f457b74819e47a",
+        "type": "gitlab"
       },
       "original": {
         "owner": "zrhive",
         "ref": "main",
         "repo": "suckless",
-        "type": "github"
+        "type": "gitlab"
       }
     },
     "treefmt-nix": {

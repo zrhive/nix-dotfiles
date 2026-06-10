@@ -56,7 +56,7 @@
       flake = false;
     };
     suckless = {
-      url = "github:zrhive/suckless/main";
+      url = "gitlab:zrhive/suckless/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -70,9 +70,10 @@
       hosts = import ./hosts;
       users = import ./users;
       modules = import ./modules;
-
-      #: SET OF ARGS TO PASS IN
-      args = {
+    in
+    rec {
+      #: FUNCTION LIBRARY
+      lib = import ./lib {
         inherit
           inputs
           hosts
@@ -80,10 +81,6 @@
           modules
           ;
       };
-    in
-    rec {
-      #: FUNCTION LIBRARY
-      lib = import ./lib args;
 
       #: GENERATE HOSTS|HOMES CONFIGURATION
       nixosConfigurations = mapAttrs lib.mkNixos (lib.filterNixos hosts);
@@ -142,7 +139,6 @@
             pkgs.lazygit
           ];
         };
-
       });
     };
 }
