@@ -1,7 +1,10 @@
 { config, lib, ... }:
 {
   services.displayManager = {
-    enable = lib.mkIf (config.modules.graphical.display.manager != "") true;
+    enable = lib.mkIf (
+      config.modules.graphical.display.manager != ""
+      && config.modules.graphical.display.manager != "lightdm"
+    ) true;
     /**
       Commented option.
       Display manager, lemurs and ly

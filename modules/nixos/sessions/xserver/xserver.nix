@@ -1,9 +1,16 @@
 { config, lib, ... }:
 {
   services.xserver = {
-    enable = lib.mkDefault config.modules.xserver.enable;
+    enable = config.modules.xserver.enable;
     autoRepeatDelay = 300;
     autoRepeatInterval = 45;
+
+    serverFlagsSection = ''
+      Option "BlankTime" "0"
+      Option "StandbyTime" "10"
+      Option "SuspendTime" "20"
+      Option "OffTime" "30"
+    '';
 
     /**
       wallpaper via desktop manager

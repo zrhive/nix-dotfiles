@@ -1,15 +1,22 @@
 {
-  inputs,
+  config,
   lib,
-  pkgs,
+  inputs,
   ...
 }:
-{
-  imports = [ inputs.suckless.nixosModules.default ];
 
-  suckless = {
-    dwm = {
-      package = lib.mkDefault pkgs.dwm;
-    };
+let
+  inherit (lib) mkDefault;
+  inherit (config.modules.graphical) xserver;
+in
+{
+  imports = [ inputs.suckless.nixosModules.flexipatch ];
+
+  suckless.tools = {
+    enable = xserver.dwm;
+    dwm.enable = mkDefault true;
+    dmenu.enable = mkDefault true;
+    st.enable = mkDefault true;
+    slstatus.enable = mkDefault true;
   };
 }
