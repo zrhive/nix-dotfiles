@@ -28,7 +28,4 @@
       };
     };
   };
-
-  # Graphical interface for managing bluetooth
-  services.blueman.enable = true;
 }
