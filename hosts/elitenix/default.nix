@@ -15,9 +15,5 @@
     nixos.profiles.gaming
     nixos.themes.console
     nixos.themes.nmtui
-
-    #: Printers
-    nixos.hardware.printing.brother
-    nixos.hardware.printing.epson
   ];
 }
