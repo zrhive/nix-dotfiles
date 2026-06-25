@@ -12,11 +12,14 @@ in
 {
   imports = [ inputs.suckless.nixosModules.flexipatch ];
 
-  suckless.tools = {
+  suckless = {
     enable = xserver.dwm;
-    dwm.enable = mkDefault true;
-    dmenu.enable = mkDefault true;
-    st.enable = mkDefault true;
-    slstatus.enable = mkDefault true;
+
+    tools = {
+      dwm.enable = mkDefault true;
+      dmenu.enable = mkDefault true;
+      st.enable = mkDefault true;
+      slstatus.enable = mkDefault true;
+    };
   };
 }
