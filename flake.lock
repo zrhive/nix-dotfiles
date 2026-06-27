@@ -440,11 +440,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781340680,
-        "narHash": "sha256-0hREI6lyp4xyeOkJAlnktKQR3Sd3298pUYEKwpG+gY0=",
+        "lastModified": 1781615358,
+        "narHash": "sha256-K0gB8e95+WYsOtpQPn03GJgKPNQ/jgGSQMD1Y8KJ4aA=",
         "owner": "zrhive",
         "repo": "suckless",
-        "rev": "1cec8ffc91e13dd94e1548a0baba51b5aa37d8ab",
+        "rev": "d3cdc0deefc6a6ee424089d5e65203337af0d212",
         "type": "gitlab"
       },
       "original": {
