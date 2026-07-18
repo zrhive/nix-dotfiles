@@ -1,6 +1,6 @@
 rec {
   #: Audio
-  audio = ./pipewire.nix;
+  pipewire = ./pipewire.nix;
 
   #: Bluetooth
   bluetooth = ./bluetooth.nix;
